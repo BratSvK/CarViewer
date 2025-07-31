@@ -3,11 +3,21 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { AuthStackParamList } from '../navigation/AuthNavigator';
+import { login } from '../store/auth';
+import { useAppDispatch } from '../store/hooks';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+
+  const dispatch = useAppDispatch();
+
+  function handleLogin() {
+    // Tu môže byť volanie na backend/Firebase
+    dispatch(login({ name: 'Mock User', email }));
+    console.log('User logged in:', { name: 'Mock User', email });
+  }
 
   return (
     <View style={styles.container}>
@@ -32,7 +42,7 @@ const LoginScreen = () => {
       <TouchableOpacity>
         <Text style={styles.forgot}>Forgot password?</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Register')}>
