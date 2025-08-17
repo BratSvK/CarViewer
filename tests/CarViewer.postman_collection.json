@@ -1,0 +1,14 @@
+{
+	"info": {
+		"_postman_id": "88f4bcff-1dd2-42ae-85a0-66a0a8cfd130",
+		"name": "CarViewer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11251158"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": []
+		}
+	]
+}
