@@ -1,5 +1,5 @@
 
-const localization = {
+const LOCALIZATION = {
   common: {
     ok: 'OK',
     cancel: 'Cancel',
@@ -33,4 +33,9 @@ const localization = {
   // Add other screens here
 };
 
-export default localization;
+export const SUPPORTED_LNG_NAMES = {
+  default: 'sk',
+  en: 'en',
+};
+
+export default LOCALIZATION;

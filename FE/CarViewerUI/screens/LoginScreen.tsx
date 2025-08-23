@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import AbstractInputText from '../components/AbstractInputText';
 import AbstractText from '../components/AbstractText';
-import localization from '../constants/localization';
+import LOCALIZATION from '../constants/localization';
 import { AuthStackParamList } from '../navigation/AuthNavigator';
 import { login } from '../store/auth';
 import { useAppDispatch } from '../store/hooks';
@@ -25,11 +25,11 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <AbstractText
-        textKey={localization.loginScreen.welcome}
+        textKey={LOCALIZATION.loginScreen.welcome}
         style={styles.title}
       />
       <AbstractInputText
-        placeholderKey={localization.forms.email}
+        placeholderKey={LOCALIZATION.forms.email}
         style={styles.input}
         value={email}
         onChangeText={setEmail}
@@ -37,7 +37,7 @@ const LoginScreen = () => {
         keyboardType="email-address"
       />
       <AbstractInputText
-        placeholderKey={localization.forms.password}
+        placeholderKey={LOCALIZATION.forms.password}
         style={styles.input}
         value={password}
         onChangeText={setPassword}
@@ -45,19 +45,19 @@ const LoginScreen = () => {
       />
       <TouchableOpacity>
         <AbstractText
-          textKey={localization.loginScreen.forgotPassword}
+          textKey={LOCALIZATION.loginScreen.forgotPassword}
           style={styles.forgot}
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <AbstractText
-          textKey={localization.loginScreen.loginButton}
+          textKey={LOCALIZATION.loginScreen.loginButton}
           style={styles.buttonText}
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Register")}>
         <AbstractText
-          textKey={localization.loginScreen.signUpPrompt}
+          textKey={LOCALIZATION.loginScreen.signUpPrompt}
           style={styles.switch}
         />
       </TouchableOpacity>

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import AbstractInputText from '../components/AbstractInputText';
 import AbstractText from '../components/AbstractText';
-import localization from '../constants/localization';
+import LOCALIZATION from '../constants/localization';
 import { AuthStackParamList } from '../navigation/AuthNavigator';
 
 const RegisterScreen = () => {
@@ -16,24 +16,24 @@ const RegisterScreen = () => {
   return (
     <View style={styles.container}>
       <AbstractText
-        textKey={localization.registerScreen.createAccount}
+        textKey={LOCALIZATION.registerScreen.createAccount}
         style={styles.title}
       />
       <AbstractInputText
-        placeholderKey={localization.registerScreen.username}
+        placeholderKey={LOCALIZATION.registerScreen.username}
         style={styles.input}
         value={name}
         onChangeText={setName}
       />
       <AbstractInputText
-        placeholderKey={localization.forms.email}
+        placeholderKey={LOCALIZATION.forms.email}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
         keyboardType="email-address"
       />
       <AbstractInputText
-        placeholderKey={localization.forms.password}
+        placeholderKey={LOCALIZATION.forms.password}
         style={styles.input}
         value={password}
         onChangeText={setPassword}
@@ -41,13 +41,13 @@ const RegisterScreen = () => {
       />
       <TouchableOpacity style={styles.button}>
         <AbstractText
-          textKey={localization.registerScreen.registerButton}
+          textKey={LOCALIZATION.registerScreen.registerButton}
           style={styles.buttonText}
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <AbstractText
-          textKey={localization.registerScreen.loginPrompt}
+          textKey={LOCALIZATION.registerScreen.loginPrompt}
           style={styles.switch}
         />
       </TouchableOpacity>

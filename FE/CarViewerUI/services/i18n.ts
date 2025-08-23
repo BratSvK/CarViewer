@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { SUPPORTED_LNG_NAMES } from "../constants/localization";
 import en from "../locales/en.json";
 import sk from "../locales/sk.json";
 
@@ -13,8 +14,8 @@ i18n
   .init({
     compatibilityJSON: "v4",
     resources,
-    lng: "sk",
-    fallbackLng: "en",
+    lng: SUPPORTED_LNG_NAMES.default,
+    fallbackLng: SUPPORTED_LNG_NAMES.default,
     interpolation: { escapeValue: false },
   });
 
