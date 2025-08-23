@@ -1,25 +1,35 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Image, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
+import CountryFlag from "react-native-country-flag";
+import * as flags from 'react-native-country-flag-data';
+import { SUPPORTED_LNG_NAMES } from "../constants/localization";
 
 export default function LanguageFlag() {
   const { i18n } = useTranslation();
   const currentLang = i18n.language;
 
-  const flagSource =
-    currentLang === "sk"
-      ? require("../assets/flags/sk.png")
-      : require("../assets/flags/en.png");
+  const countryCode =
+    currentLang === SUPPORTED_LNG_NAMES.default
+      ? SUPPORTED_LNG_NAMES.default
+      : SUPPORTED_LNG_NAMES.en; 
 
   return (
     <TouchableOpacity
       onPress={() =>
-        i18n.changeLanguage(currentLang === "en" ? "sk" : "en")
+        i18n.changeLanguage(
+          currentLang === SUPPORTED_LNG_NAMES.en
+            ? SUPPORTED_LNG_NAMES.default
+            : SUPPORTED_LNG_NAMES.en
+        )
       }
+      style={{ marginRight: 5 }}
     >
-      <Image
-        source={flagSource}
-        style={{ width: 30, height: 20, marginRight: 15 }}
+      <CountryFlag
+        isoCode={countryCode}
+        size={30}
+        flags={flags}
+        style={{ borderColor: "white", borderWidth: 1 }}
       />
     </TouchableOpacity>
   );

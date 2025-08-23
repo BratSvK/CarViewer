@@ -9,6 +9,7 @@ import { AuthStackParamList } from '../navigation/AuthNavigator';
 import { login } from '../store/auth';
 import { useAppDispatch } from '../store/hooks';
 
+
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

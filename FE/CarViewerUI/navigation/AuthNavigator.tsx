@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import CustomHeader from "../components/CustomHeader";
 import { SCREENS } from "../constants/screens";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
@@ -14,7 +15,8 @@ const Stack = createNativeStackNavigator<AuthStackParamList>();
 const AuthNavigator = () => (
   <Stack.Navigator
     screenOptions={{
-      headerShown: false, // Hides the header for all screens in this stack
+      header: () => <CustomHeader />,
+      animation: "none"
     }}
   >
     <Stack.Screen name={SCREENS.LOGIN as never} component={LoginScreen} />

@@ -27,7 +27,7 @@ const LOCALIZATION = {
   registerScreen: {
     createAccount: 'register',
     username: 'username',
-    registerButton: 'register',
+    registerButton: 'register_button',
     loginPrompt: 'login_prompt',
   },
   // Add other screens here
@@ -35,7 +35,7 @@ const LOCALIZATION = {
 
 export const SUPPORTED_LNG_NAMES = {
   default: 'sk',
-  en: 'en',
+  en: 'us',
 };
 
 export default LOCALIZATION;

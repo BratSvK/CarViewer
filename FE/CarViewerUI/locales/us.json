@@ -8,5 +8,6 @@
   "email_placeholder": "Enter your email",
   "password_placeholder": "Enter your password",
   "username": "Username",
-  "login_prompt": "Already have an account? Login"
+  "login_prompt": "Already have an account? Login",
+  "register_button": "Register"
 }

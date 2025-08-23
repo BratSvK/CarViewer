@@ -8,5 +8,6 @@
   "email_placeholder": "Zadajte svoj email",
   "password_placeholder": "Zadajte svoje heslo",
   "username": "Používateľské meno",
-  "login_prompt": "Už máte účet? Prihlásiť sa"
+  "login_prompt": "Už máte účet? Prihlásiť sa",
+  "register_button": "Zaregistrovať sa"
 }
