@@ -18,7 +18,6 @@
     "react": "19.0.0",
     "react-i18next": "^15.7.1",
     "react-native": "0.79.5",
-    "react-native-country-flag": "^2.0.2",
     "react-native-country-flag-data": "file:packages/react-native-country-flag-data",
     "react-native-localize": "^3.5.2",
     "react-native-svg": "^15.12.1",
