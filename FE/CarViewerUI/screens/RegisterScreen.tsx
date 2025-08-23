@@ -1,7 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import AbstractInputText from '../components/AbstractInputText';
+import AbstractText from '../components/AbstractText';
+import localization from '../constants/localization';
 import { AuthStackParamList } from '../navigation/AuthNavigator';
 
 const RegisterScreen = () => {
@@ -12,36 +15,41 @@ const RegisterScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create account</Text>
-      <TextInput
+      <AbstractText
+        textKey={localization.registerScreen.createAccount}
+        style={styles.title}
+      />
+      <AbstractInputText
+        placeholderKey={localization.registerScreen.username}
         style={styles.input}
-        placeholder="Name"
-        placeholderTextColor="#aaa"
         value={name}
         onChangeText={setName}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#aaa"
+      <AbstractInputText
+        placeholderKey={localization.forms.email}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
         keyboardType="email-address"
       />
-      <TextInput
+      <AbstractInputText
+        placeholderKey={localization.forms.password}
         style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#aaa"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Register</Text>
+        <AbstractText
+          textKey={localization.registerScreen.registerButton}
+          style={styles.buttonText}
+        />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.switch}>Already have an account? Log In</Text>
+        <AbstractText
+          textKey={localization.registerScreen.loginPrompt}
+          style={styles.switch}
+        />
       </TouchableOpacity>
     </View>
   );

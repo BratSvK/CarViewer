@@ -1,7 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import AbstractInputText from '../components/AbstractInputText';
+import AbstractText from '../components/AbstractText';
+import localization from '../constants/localization';
 import { AuthStackParamList } from '../navigation/AuthNavigator';
 import { login } from '../store/auth';
 import { useAppDispatch } from '../store/hooks';
@@ -21,32 +24,42 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome back</Text>
-      <TextInput
+      <AbstractText
+        textKey={localization.loginScreen.welcome}
+        style={styles.title}
+      />
+      <AbstractInputText
+        placeholderKey={localization.forms.email}
         style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#aaa"
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
         keyboardType="email-address"
       />
-      <TextInput
+      <AbstractInputText
+        placeholderKey={localization.forms.password}
         style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#aaa"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <TouchableOpacity>
-        <Text style={styles.forgot}>Forgot password?</Text>
+        <AbstractText
+          textKey={localization.loginScreen.forgotPassword}
+          style={styles.forgot}
+        />
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Log in</Text>
+        <AbstractText
+          textKey={localization.loginScreen.loginButton}
+          style={styles.buttonText}
+        />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.switch}>New user? Sign Up</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+        <AbstractText
+          textKey={localization.loginScreen.signUpPrompt}
+          style={styles.switch}
+        />
       </TouchableOpacity>
     </View>
   );

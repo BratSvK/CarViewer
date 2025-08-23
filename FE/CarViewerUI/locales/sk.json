@@ -1,0 +1,12 @@
+{
+  "login": "Prihlásiť sa",
+  "register": "Pridajte sa do garaže",
+  "welcome": "Vitajte Autičkári",
+  "forgot_password": "Zabudnuté heslo?",
+  "login_button": "Prihlásiť sa",
+  "sign_up_prompt": "Nemáte účet? Zaregistrujte sa",
+  "email_placeholder": "Zadajte svoj email",
+  "password_placeholder": "Zadajte svoje heslo",
+  "username": "Používateľské meno",
+  "login_prompt": "Už máte účet? Prihlásiť sa"
+}
