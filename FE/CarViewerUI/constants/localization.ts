@@ -35,7 +35,12 @@ const LOCALIZATION = {
 
 export const SUPPORTED_LNG_NAMES = {
   default: 'sk',
-  en: 'us',
+  en: 'en',
+};
+
+export const SUPPORTED_LNG_FLAGS = {
+  default: 'sk',
+  en: 'gb',
 };
 
 export default LOCALIZATION;

@@ -1,12 +1,12 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { SUPPORTED_LNG_NAMES } from "../constants/localization";
+import en from "../locales/en.json";
 import sk from "../locales/sk.json";
-import us from "../locales/us.json";
 
 const resources = {
   sk: { translation: sk },
-  us: { translation: us }
+  en: { translation: en }
 };
 
 i18n

@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { TouchableOpacity } from "react-native";
 import * as flags from "react-native-country-flag-data";
-import { SUPPORTED_LNG_NAMES } from "../constants/localization";
+import { SUPPORTED_LNG_FLAGS, SUPPORTED_LNG_NAMES } from "../constants/localization";
 import CountryFlag from "./CountryFlag";
 
 export default function LanguageFlag() {
@@ -10,9 +10,9 @@ export default function LanguageFlag() {
   const currentLang = i18n.language;
 
   const countryCode =
-    currentLang === SUPPORTED_LNG_NAMES.default
-      ? SUPPORTED_LNG_NAMES.default
-      : SUPPORTED_LNG_NAMES.en;
+    currentLang === SUPPORTED_LNG_FLAGS.default
+      ? SUPPORTED_LNG_FLAGS.default
+      : SUPPORTED_LNG_FLAGS.en;
 
   return (
     <TouchableOpacity
