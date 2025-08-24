@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import AbstractInputText from '../components/AbstractInputText';
 import AbstractText from '../components/AbstractText';
 import LOCALIZATION from '../constants/localization';
@@ -23,11 +23,13 @@ const LoginScreen = () => {
     console.log('User logged in:', { name: 'Mock User', email });
   }
 
+  var imageLogo = require('../assets/logo_welcome.png');
+
   return (
     <View style={styles.container}>
-      <AbstractText
-        textKey={LOCALIZATION.loginScreen.welcome}
-        style={styles.title}
+      <Image
+        source={imageLogo}
+        style={styles.logo}
       />
       <AbstractInputText
         placeholderKey={LOCALIZATION.forms.email}
@@ -109,6 +111,11 @@ const styles = StyleSheet.create({
   switch: {
     color: '#aaa',
     marginTop: 10,
+  },
+  logo: {
+    width: 400,
+    height: 300,
+    marginBottom: 5,
   },
 });
 
