@@ -29,6 +29,7 @@ const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
       control,
       handleSubmit,
       formState: { errors },
+      reset,
     } = useForm({
       resolver: yupResolver(validationSchema),
       defaultValues: {
@@ -36,6 +37,20 @@ const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
       },
     });
 
+    const handleFormSubmit = (data: { email: string }) => {
+      onSubmit(data.email);
+      resetModal();
+    };
+
+    const resetModal = () => {
+      reset();
+      onClose();
+    };
+
+    const closeModal = () => {
+      resetModal();
+      onClose();
+    };
 
   return (
     <Modal
@@ -61,12 +76,12 @@ const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
           <View style={styles.modalButtons}>
             <AbstractButton
               textKey={LOCALIZATION.forms.cancel}
-              onPress={onClose}
+              onPress={closeModal}
               style={styles.cancelButton}
             />
             <AbstractButton
               textKey={LOCALIZATION.forms.submit}
-              onPress={handleSubmit((data) => onSubmit(data.email))}
+              onPress={handleSubmit(handleFormSubmit)}
               style={styles.submitButton}
             />
           </View>

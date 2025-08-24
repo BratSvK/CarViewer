@@ -11,6 +11,7 @@ import ForgotPasswordModal from "../components/ForgotPasswordModal";
 import ValidatedInput from "../components/ValidationInput";
 import LOCALIZATION from "../constants/localization";
 import { AuthStackParamList } from "../navigation/AuthNavigator";
+import authService from "../services/authService";
 import { RootState } from "../store";
 import { login } from "../store/auth";
 import { useAppDispatch } from "../store/hooks";
@@ -33,7 +34,7 @@ const LoginScreen = () => {
 
   const handleForgotPassword = (email: string) => {
     console.log("Forgot password for:", email);
-    // Add logic to handle password reset (e.g., API call)
+    authService.forgotPassword(email);
     setModalVisible(false); // Close the modal after handling
   };
 
