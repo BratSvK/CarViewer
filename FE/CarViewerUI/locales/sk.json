@@ -14,5 +14,8 @@
   "validation_email_required": "Email je povinný",
   "validation_password_min": "Heslo musí mať aspoň 6 znakov",
   "validation_password_required": "Heslo je povinné",
-  "validation_name_required": "Meno je povinné"
+  "validation_name_required": "Meno je povinné",
+  "forgot_password_prompt": "Obnovenie hesla",
+  "submit": "Odoslať",
+  "cancel": "Zrušiť"
 }

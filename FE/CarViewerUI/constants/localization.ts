@@ -2,7 +2,6 @@
 const LOCALIZATION = {
   common: {
     ok: 'OK',
-    cancel: 'Cancel',
     yes: 'Yes',
     no: 'No',
     // Add other common terms here
@@ -10,12 +9,8 @@ const LOCALIZATION = {
   forms: {
     email: 'email_placeholder',
     password: 'password_placeholder',
-    requiredField: 'This field is required',
-    invalidEmail: 'Please enter a valid email address',
-    minLength: 'This field must be at least {min} characters long',
-    maxLength: 'This field must be at most {max} characters long', 
-    passwordsMustMatch: 'Passwords must match',
-    submit: 'Submit'
+    submit: 'submit',
+    cancel: 'cancel',
     // Add other form-related terms here
   },
   validation: {
@@ -31,6 +26,7 @@ const LOCALIZATION = {
     forgotPassword: 'forgot_password',
     loginButton: 'login_button',
     signUpPrompt: 'sign_up_prompt',
+    forgotPasswordPrompt: 'forgot_password_prompt',
   },
   registerScreen: {
     createAccount: 'register',

@@ -1,12 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import AbstractText from "../components/AbstractText";
+import ForgotPasswordModal from "../components/ForgotPasswordModal";
 import ValidatedInput from "../components/ValidationInput";
 import LOCALIZATION from "../constants/localization";
 import { AuthStackParamList } from "../navigation/AuthNavigator";
@@ -18,6 +19,7 @@ const LoginScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
+  const [isModalVisible, setModalVisible] = useState(false);
   const dispatch = useAppDispatch();
 
   const validationSchema = Yup.object().shape({
@@ -28,6 +30,12 @@ const LoginScreen = () => {
       .min(6, LOCALIZATION.validation.passwordMin)
       .required(LOCALIZATION.validation.passwordRequired),
   });
+
+  const handleForgotPassword = (email: string) => {
+    console.log("Forgot password for:", email);
+    // Add logic to handle password reset (e.g., API call)
+    setModalVisible(false); // Close the modal after handling
+  };
 
   const {
     control,
@@ -71,7 +79,7 @@ const LoginScreen = () => {
         secureTextEntry
         style={styles.input}
       />
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setModalVisible(true)}>
         <AbstractText
           textKey={LOCALIZATION.loginScreen.forgotPassword}
           style={styles.forgot}
@@ -92,6 +100,11 @@ const LoginScreen = () => {
           style={styles.switch}
         />
       </TouchableOpacity>
+      <ForgotPasswordModal
+        visible={isModalVisible}
+        onClose={() => setModalVisible(false)}
+        onSubmit={handleForgotPassword}
+      />
     </View>
   );
 };
