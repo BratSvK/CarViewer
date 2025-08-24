@@ -1,17 +1,51 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import AbstractInputText from '../components/AbstractInputText';
+import * as Yup from 'yup';
 import AbstractText from '../components/AbstractText';
+import ValidatedInput from '../components/ValidationInput';
 import LOCALIZATION from '../constants/localization';
 import { AuthStackParamList } from '../navigation/AuthNavigator';
 
 const RegisterScreen = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
   const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+
+  // Validation schema using Yup
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required(LOCALIZATION.validation.nameRequired),
+    email: Yup.string()
+      .email(LOCALIZATION.validation.invalidEmail)
+      .required(LOCALIZATION.validation.emailRequired),
+    password: Yup.string()
+      .min(6, LOCALIZATION.validation.passwordMin)
+      .required(LOCALIZATION.validation.passwordRequired),
+  });
+
+  // React Hook Form setup
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+  });
+
+  const handleRegister = (data: {
+    name: string;
+    email: string;
+    password: string;
+  }) => {
+    console.log("Registering user with data:", data);
+    // Add registration logic here (e.g., API call)
+  };
 
   return (
     <View style={styles.container}>
@@ -19,33 +53,39 @@ const RegisterScreen = () => {
         textKey={LOCALIZATION.registerScreen.createAccount}
         style={styles.title}
       />
-      <AbstractInputText
+      <ValidatedInput
+        control={control}
+        name="name"
         placeholderKey={LOCALIZATION.registerScreen.username}
+        errors={errors}
         style={styles.input}
-        value={name}
-        onChangeText={setName}
       />
-      <AbstractInputText
+      <ValidatedInput
+        control={control}
+        name="email"
         placeholderKey={LOCALIZATION.forms.email}
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
+        errors={errors}
         keyboardType="email-address"
-      />
-      <AbstractInputText
-        placeholderKey={LOCALIZATION.forms.password}
         style={styles.input}
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
       />
-      <TouchableOpacity style={styles.button}>
+      <ValidatedInput
+        control={control}
+        name="password"
+        placeholderKey={LOCALIZATION.forms.password}
+        errors={errors}
+        secureTextEntry
+        style={styles.input}
+      />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleSubmit(handleRegister)}
+      >
         <AbstractText
           textKey={LOCALIZATION.registerScreen.registerButton}
           style={styles.buttonText}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <AbstractText
           textKey={LOCALIZATION.registerScreen.loginPrompt}
           style={styles.switch}

@@ -13,5 +13,6 @@
   "validation_invalid_email": "Invalid email address",
   "validation_email_required": "Email is required",
   "validation_password_min": "Password must be at least 6 characters",
-  "validation_password_required": "Password is required"
+  "validation_password_required": "Password is required",
+  "validation_name_required": "Name is required"
 }

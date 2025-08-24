@@ -23,6 +23,7 @@ const LOCALIZATION = {
     emailRequired: 'validation_email_required',
     passwordMin: 'validation_password_min',
     passwordRequired: 'validation_password_required',
+    nameRequired: 'validation_name_required',
     // Add other validation messages here
   },
   loginScreen: {
