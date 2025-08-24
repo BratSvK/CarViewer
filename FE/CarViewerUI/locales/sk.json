@@ -9,5 +9,9 @@
   "password_placeholder": "Zadajte svoje heslo",
   "username": "Používateľské meno",
   "login_prompt": "Už máte účet? Prihlásiť sa",
-  "register_button": "Zaregistrovať sa"
+  "register_button": "Zaregistrovať sa",
+  "validation_invalid_email": "Neplatná emailová adresa",
+  "validation_email_required": "Email je povinný",
+  "validation_password_min": "Heslo musí mať aspoň 6 znakov",
+  "validation_password_required": "Heslo je povinné"
 }

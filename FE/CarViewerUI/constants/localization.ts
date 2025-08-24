@@ -18,6 +18,13 @@ const LOCALIZATION = {
     submit: 'Submit'
     // Add other form-related terms here
   },
+  validation: {
+    invalidEmail: 'validation_invalid_email',
+    emailRequired: 'validation_email_required',
+    passwordMin: 'validation_password_min',
+    passwordRequired: 'validation_password_required',
+    // Add other validation messages here
+  },
   loginScreen: {
     welcome: 'welcome',
     forgotPassword: 'forgot_password',

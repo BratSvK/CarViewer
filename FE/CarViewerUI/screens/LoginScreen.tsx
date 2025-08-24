@@ -1,50 +1,75 @@
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
-import AbstractInputText from '../components/AbstractInputText';
-import AbstractText from '../components/AbstractText';
-import LOCALIZATION from '../constants/localization';
-import { AuthStackParamList } from '../navigation/AuthNavigator';
-import { login } from '../store/auth';
-import { useAppDispatch } from '../store/hooks';
-
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useSelector } from "react-redux";
+import * as Yup from "yup";
+import AbstractText from "../components/AbstractText";
+import ValidatedInput from "../components/ValidationInput";
+import LOCALIZATION from "../constants/localization";
+import { AuthStackParamList } from "../navigation/AuthNavigator";
+import { RootState } from "../store";
+import { login } from "../store/auth";
+import { useAppDispatch } from "../store/hooks";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
   const dispatch = useAppDispatch();
 
-  function handleLogin() {
-    // Tu môže byť volanie na backend/Firebase
-    dispatch(login({ name: 'Mock User', email }));
-    console.log('User logged in:', { name: 'Mock User', email });
-  }
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(LOCALIZATION.validation.invalidEmail)
+      .required(LOCALIZATION.validation.emailRequired),
+    password: Yup.string()
+      .min(6, LOCALIZATION.validation.passwordMin)
+      .required(LOCALIZATION.validation.passwordRequired),
+  });
 
-  var imageLogo = require('../assets/logo_welcome.png');
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+
+  const handleLogin = (data: { email: string; password: string }) => {
+    // Tu môže byť volanie na backend/Firebase
+    console.log("isLoggedIn state before login:", isLoggedIn);
+    console.log("Attempting login with:", data);
+    dispatch(login({ name: "Mock User", email: data.email }));
+    // Navigácia na hlavnú obrazovku po úspešnom prihlásení
+  };
+
+  var imageLogo = require("../assets/logo_welcome.png");
 
   return (
     <View style={styles.container}>
-      <Image
-        source={imageLogo}
-        style={styles.logo}
-      />
-      <AbstractInputText
+      <Image source={imageLogo} style={styles.logo} />
+      <ValidatedInput
+        control={control}
+        name="email"
         placeholderKey={LOCALIZATION.forms.email}
-        style={styles.input}
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
+        errors={errors}
         keyboardType="email-address"
-      />
-      <AbstractInputText
-        placeholderKey={LOCALIZATION.forms.password}
         style={styles.input}
-        value={password}
-        onChangeText={setPassword}
+      />
+      <ValidatedInput 
+        control={control}
+        name="password"
+        placeholderKey={LOCALIZATION.forms.password}
+        errors={errors}
         secureTextEntry
+        style={styles.input}
       />
       <TouchableOpacity>
         <AbstractText
@@ -52,7 +77,10 @@ const LoginScreen = () => {
           style={styles.forgot}
         />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={handleSubmit(handleLogin)}
+      >
         <AbstractText
           textKey={LOCALIZATION.loginScreen.loginButton}
           style={styles.buttonText}
@@ -71,45 +99,52 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#161629',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#161629",
+    justifyContent: "center",
+    alignItems: "center",
     paddingHorizontal: 28,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
     marginBottom: 36,
   },
+  errorText: {
+    color: 'red',
+    fontSize: 12,
+    marginTop: -10,
+    marginBottom: 10,
+    alignSelf: 'flex-start',
+  },
   input: {
-    width: '100%',
-    backgroundColor: '#23234b',
-    color: '#fff',
+    width: "100%",
+    backgroundColor: "#23234b",
+    color: "#fff",
     padding: 14,
     borderRadius: 8,
     marginBottom: 16,
     fontSize: 16,
   },
   forgot: {
-    alignSelf: 'flex-end',
-    color: '#AAAFFF',
+    alignSelf: "flex-end",
+    color: "#AAAFFF",
     marginBottom: 28,
   },
   button: {
-    backgroundColor: '#3a36db',
+    backgroundColor: "#3a36db",
     paddingVertical: 14,
     paddingHorizontal: 80,
     borderRadius: 8,
     marginBottom: 18,
   },
   buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
     fontSize: 17,
   },
   switch: {
-    color: '#aaa',
+    color: "#aaa",
     marginTop: 10,
   },
   logo: {
