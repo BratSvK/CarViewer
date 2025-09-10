@@ -1,4 +1,7 @@
 import { AuthUser } from "../types/auth/authUser";
+import http from "../util/http";
+
+const BASE_PATH = "/auth";
 
 const authService = {
   async register(email: string, password: string): Promise<AuthUser> {
@@ -32,6 +35,15 @@ const authService = {
   async forgotPassword(email: string): Promise<void> {
     // await auth().sendPasswordResetEmail(email);
     console.log("Calling API .NET:", email);
+  },
+
+  async tryAPI(payload: string): Promise<string> {
+    // Simulácia volania API
+    console.log("Calling API .NET:", payload);
+    console.log(`Full URL: ${http.defaults.baseURL}${BASE_PATH}/demo`);
+
+    const res = await http.post(`${BASE_PATH}/demo`, `"${payload}"`);
+    return res.data;
   }
 };
 
