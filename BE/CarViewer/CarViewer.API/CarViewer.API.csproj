@@ -14,5 +14,4 @@
     <ItemGroup>
       <ProjectReference Include="..\CarViewer.Application\CarViewer.Application.csproj" />
     </ItemGroup>
-
 </Project>

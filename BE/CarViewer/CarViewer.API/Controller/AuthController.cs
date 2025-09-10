@@ -1,3 +1,5 @@
+using CarViewer.Extensions;
+using CarViewer.Application.Features.Demo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarViewer.Controller;
@@ -22,10 +24,13 @@ public class AuthController : BaseController
     // }
     
     [HttpPost("demo")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult Demo([FromBody] string payload)
+    [ProducesResponseType(StatusCodes.Status200OK,  Type = typeof(DemoTestQuery.Response))]
+    public async Task<IActionResult> Demo([FromBody] string payload)
     {
         // Your logic here
-        return Ok($"Received: {payload}");
+        string demoText = $"Received: {payload}";
+        DemoTestQuery.Response response = await this.SendRequest((new DemoTestQuery.Query(demoText)));
+        
+        return Ok(response);
     }
 }

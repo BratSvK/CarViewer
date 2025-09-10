@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.Text;
 namespace CarViewer.Generator;
 
 [Generator]
-public class CqrsGenerator : IIncrementalGenerator
+public class CqrsRegistrationGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -64,13 +64,13 @@ public class CqrsGenerator : IIncrementalGenerator
                 GenerateRegistration(sb, queryHandler, "IQueryHandler");
             }
 
-            sb.AppendLine("        services.AddTransient<IDispatcher, Dispatcher>();");
+            sb.AppendLine("        services.AddTransient<CarViewer.Application.Mediator.IDispatcher, CarViewer.Application.Mediator.Dispatcher>();");
             sb.AppendLine("        return services;");
             sb.AppendLine("    }");
             sb.AppendLine("}");
 
             // Output the generated source code
-            spc.AddSource("CqrsGenerator.generated.cs", SourceText.From(sb.ToString(), Encoding.UTF8));
+            spc.AddSource("CqrsRegistrationGenerator.generated.cs", SourceText.From(sb.ToString(), Encoding.UTF8));
         });
     }
 

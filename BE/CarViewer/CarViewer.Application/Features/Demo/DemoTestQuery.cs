@@ -4,16 +4,15 @@ namespace CarViewer.Application.Features.Demo;
 
 public static class DemoTestQuery
 {
-    public record DemoTestResponse(string ResponseText);
+    public record Response(string ResponseText);
     
-    public record Query(string DemoText) : IQuery<DemoTestResponse>;
+    public record Query(string DemoText) : IQuery<Response>;
     
-    internal class Handler : IQueryHandler<Query, DemoTestResponse>
+    internal class Handler : IQueryHandler<Query, Response>
     {
-        public async Task<DemoTestResponse> HandleAsync(Query query, CancellationToken cancellationToken)
+        public async Task<Response> HandleAsync(Query query, CancellationToken cancellationToken)
         {
-            var demoText = $"Received: {query.DemoText}";
-            var response = new DemoTestResponse(demoText);
+            var response = new Response($"From query handler using Mediator and Dispatcher {query.DemoText}");
             
             return await Task.FromResult(response);
         }
