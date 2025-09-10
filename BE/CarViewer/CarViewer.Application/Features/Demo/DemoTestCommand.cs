@@ -1,4 +1,4 @@
-using CarViewer.Application.Mediator.Command;
+using CarViewer.Application.Mediator.Commands;
 using Microsoft.Extensions.Logging;
 
 namespace CarViewer.Application.Features.Demo;

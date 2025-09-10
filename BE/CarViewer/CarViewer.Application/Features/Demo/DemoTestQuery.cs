@@ -1,4 +1,4 @@
-using CarViewer.Application.Mediator;
+using CarViewer.Application.Mediator.Queries;
 
 namespace CarViewer.Application.Features.Demo;
 

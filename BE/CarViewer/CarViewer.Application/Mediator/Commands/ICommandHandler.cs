@@ -1,4 +1,4 @@
-namespace CarViewer.Application.Mediator.Command;
+namespace CarViewer.Application.Mediator.Commands;
 
 public interface ICommandHandler<in TCommand, TResponse> 
     where TCommand : ICommand<TResponse>

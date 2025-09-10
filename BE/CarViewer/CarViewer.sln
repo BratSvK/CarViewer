@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarViewer.API", "CarViewer.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarViewer.Application", "CarViewer.Application\CarViewer.Application.csproj", "{6D7D7B7F-FDDE-40D1-AD41-D8DC53BA7C22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarViewer.Generator", "CarViewer.Generator\CarViewer.Generator.csproj", "{59F3E768-78CF-4448-AAFA-A207CE911333}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{6D7D7B7F-FDDE-40D1-AD41-D8DC53BA7C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D7D7B7F-FDDE-40D1-AD41-D8DC53BA7C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D7D7B7F-FDDE-40D1-AD41-D8DC53BA7C22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59F3E768-78CF-4448-AAFA-A207CE911333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59F3E768-78CF-4448-AAFA-A207CE911333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59F3E768-78CF-4448-AAFA-A207CE911333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59F3E768-78CF-4448-AAFA-A207CE911333}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

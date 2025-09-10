@@ -1,4 +1,4 @@
-namespace CarViewer.Application.Mediator;
+namespace CarViewer.Application.Mediator.Queries;
 
 public interface IQueryHandler<in TQuery, TResponse> 
     where TQuery : IQuery<TResponse>
