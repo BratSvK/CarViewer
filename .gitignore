@@ -8,6 +8,7 @@
 appsettings.Development.json
 appsettings.Local.json
 appsettings.*.json.user
+appsettings.json
 
 # User-specific files
 *.suo
@@ -349,3 +350,4 @@ ocelot.local.json
 
 #launchSettings in test project
 /tests/**/launchSettings.json
+BE/CarViewer/CarViewer.API/appsettings.json
