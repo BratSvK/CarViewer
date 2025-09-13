@@ -1,16 +1,20 @@
+using Ardalis.Result;
+using Ardalis.Result.AspNetCore;
+using CarViewer.Application.Features.Auth.Commands;
 using CarViewer.Extensions;
-using CarViewer.Application.Features.Demo;
+using CarViewer.Application.Features.Demo.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarViewer.Controller;
 
 public class AuthController : BaseController
 {
-    // [HttpPost("register")]
-    // [ProducesResponseType(StatusCodes.Status201Created)]
-    // [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    // public async Task<IActionResult> RegisterUser(RegisterUser.Command registerUser)
-    //     => await this.SendCreateCommand(registerUser);
+    [HttpPost("register")]
+    [TranslateResultToActionResult]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<Result<Guid>> RegisterUser(RegisterUser.RegisterUserCommand registerUser)
+        => await this.SendCreateCommand(registerUser);
     
     // [HttpGet("login")]
     // [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LoggedUserDTO))]
@@ -24,13 +28,14 @@ public class AuthController : BaseController
     // }
     
     [HttpPost("demo")]
-    [ProducesResponseType(StatusCodes.Status200OK,  Type = typeof(DemoTestQuery.Response))]
-    public async Task<IActionResult> Demo([FromBody] string payload)
+    [TranslateResultToActionResult]
+    [ProducesResponseType(StatusCodes.Status200OK,  Type = typeof(DemoTest.Response))]
+    public async Task<Result<DemoTest.Response>> Demo([FromBody] string payload)
     {
         // Your logic here
         string demoText = $"Received: {payload}";
-        DemoTestQuery.Response response = await this.SendRequest((new DemoTestQuery.Query(demoText)));
+        var res = await this.SendRequest((new DemoTest.DemoTestQuery(demoText)));
         
-        return Ok(response);
+        return Result.Success(res.Value);
     }
 }

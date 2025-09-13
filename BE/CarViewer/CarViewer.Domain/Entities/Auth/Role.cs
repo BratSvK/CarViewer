@@ -2,7 +2,7 @@
 
 namespace CarViewer.Domain.Entities.Auth;
 
-public class Role : IdentityRole<Guid>
+public class Role : IdentityRole<Guid>, IEntity
 {
     #region Relationships
 

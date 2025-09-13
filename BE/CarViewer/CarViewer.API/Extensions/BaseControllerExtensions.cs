@@ -1,3 +1,4 @@
+using Ardalis.Result;
 using CarViewer.Application.Mediator;
 using CarViewer.Application.Mediator.Queries;
 using CarViewer.Application.Mediator.Commands;
@@ -14,7 +15,7 @@ public static class BaseControllerExtensions
     /// <param name="controller">Controller.</param>
     /// <param name="request">Request.</param>
     /// <returns>Response from request.</returns>
-    public static async Task<TResponse> SendRequest<TResponse>(
+    public static async Task<Result<TResponse>> SendRequest<TResponse>(
         this ControllerBase controller,
         IQuery<TResponse> request)
         => await controller.Mediator().QueryAsync(request);
@@ -25,19 +26,12 @@ public static class BaseControllerExtensions
     /// <typeparam name="TResponse">Type of command response. This response is used as id for response to the client.</typeparam>
     /// <param name="controller">Controller.</param>
     /// <param name="command">Create command.</param>
-    /// <param name="actionName">Action name to specify URI at which the content has been created.</param>
-    /// <returns><see cref="CreatedResult"/> with resource id and location.</returns>
-    public static async Task<CreatedResult> SendCreateCommand<TResponse>(
+    /// <returns><see cref="CreatedResult"/> Result object</returns>
+    public static async Task<Result<TResponse>> SendCreateCommand<TResponse>(
         this ControllerBase controller,
-        ICommand<TResponse> command,
-        string? actionName = null)
+        ICommand<TResponse> command)
     {
-        var ret = new { id = await controller.Mediator().SendAsync(command) };
-        var url = actionName is not null
-            ? controller.Url.Link(actionName, ret) ?? string.Empty
-            : string.Empty;
-
-        return controller.Created(url, ret);
+        return await controller.Mediator().SendAsync(command);
     }
     
     private static IDispatcher Mediator(this ControllerBase controller)

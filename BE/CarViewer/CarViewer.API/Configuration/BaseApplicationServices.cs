@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Serilog;
 
 namespace CarViewer.Configuration;
 
@@ -40,6 +41,16 @@ public static class BaseApplicationServices
                 jwtOptions.Audience = config["Authentication:Audience"];
                 jwtOptions.TokenValidationParameters.ValidIssuer = config["Authentication:ValidIssuer"];
             });
+
+        return services;
+    }
+    
+    public static IServiceCollection AddLoggerService(this IServiceCollection services, IConfiguration config)
+    {
+        Log.Logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(config)
+            .Enrich.FromLogContext()
+            .CreateLogger();
 
         return services;
     }

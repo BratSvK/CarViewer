@@ -2,4 +2,4 @@
 
 namespace CarViewer.Domain.Entities.Auth;
 
-public class UserRole : IdentityUserRole<Guid>;
+public class UserRole : IdentityUserRole<Guid>, IEntity;

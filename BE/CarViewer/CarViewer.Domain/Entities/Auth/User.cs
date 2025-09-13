@@ -2,7 +2,7 @@
 
 namespace CarViewer.Domain.Entities.Auth;
 
-public class User : IdentityUser<Guid>
+public class User : IdentityUser<Guid>, IEntity
 {
     /// <summary>
     /// Identity id of user from Firebase account.
@@ -17,6 +17,8 @@ public class User : IdentityUser<Guid>
     #region Relationships
     
     public ICollection<Role> Roles { get; } = [];
+    
+    public ICollection<UserClaim> Claims { get; } = [];
 
     #endregion
 }

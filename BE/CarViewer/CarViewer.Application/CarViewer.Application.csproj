@@ -7,9 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Features\Auth\Commands\" />
+      <Folder Include="Extensions\" />
       <Folder Include="Features\Auth\Queries\" />
-      <Folder Include="Interfaces\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -25,9 +24,14 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\CarViewer.Domain\CarViewer.Domain.csproj" />
         <ProjectReference Include="..\CarViewer.Generator\CarViewer.Generator.csproj"
                           OutputItemType="Analyzer"
                           ReferenceOutputAssembly="true"/>
-        <ProjectReference Include="..\CarViewer.Persistence\CarViewer.Persistence.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Ardalis.Result" Version="10.1.0" />
+      <PackageReference Include="Mapster" Version="7.4.0" />
     </ItemGroup>
 </Project>
