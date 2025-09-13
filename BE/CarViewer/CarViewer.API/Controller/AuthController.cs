@@ -9,7 +9,7 @@ public class AuthController : BaseController
     // [HttpPost("register")]
     // [ProducesResponseType(StatusCodes.Status201Created)]
     // [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    // public async Task<IActionResult> RegisterUserAsEmployee(RegisterUser.Command registerUser)
+    // public async Task<IActionResult> RegisterUser(RegisterUser.Command registerUser)
     //     => await this.SendCreateCommand(registerUser);
     
     // [HttpGet("login")]

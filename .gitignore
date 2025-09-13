@@ -4,6 +4,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Ignore sensitive appsettings
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.json.user
+
 # User-specific files
 *.suo
 *.user

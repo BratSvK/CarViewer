@@ -1,4 +1,5 @@
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace CarViewer.Configuration;
 
@@ -25,6 +26,21 @@ public static class BaseApplicationServices
                 reloadOnChange: true);
         }
         
+        return services;
+    }
+    
+    public static IServiceCollection AddIdentityService(this IServiceCollection services, IConfiguration config)
+    {
+        services.AddAuthorization();
+        // service for authentication
+        services.AddAuthentication()
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, jwtOptions =>
+            {
+                jwtOptions.Authority = config["Authentication:ValidIssuer"];
+                jwtOptions.Audience = config["Authentication:Audience"];
+                jwtOptions.TokenValidationParameters.ValidIssuer = config["Authentication:ValidIssuer"];
+            });
+
         return services;
     }
 }
