@@ -54,12 +54,12 @@ public static class RegisterUser
             Guid userId = await _userRepository.RegisterUserAsync(newUser, cancellationToken);
             if (userId == Guid.Empty)
             {
-                await _authenticationService.DeleteUser(createdIdentityIdResult.Value, cancellationToken);
+                await _authenticationService.DeleteUserAsync(createdIdentityIdResult.Value, cancellationToken);
                 
                 return Result<Guid>.Error("Failed to create user.");
             }
             
-            return Result.Success(userId);
+            return Result.Created(userId);
         }
     }
 }

@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using CarViewer.Application.DTO.Auth;
 using CarViewer.Application.Interfaces.Repositories;
 using CarViewer.Application.Interfaces.Services;
 using CarViewer.Domain.Entities.Auth;
@@ -17,6 +19,22 @@ namespace CarViewer.Infrastructure.Extensions;
 
 public static class InfrastructureServices
 {
+    // <summary>
+    /// Adds base services.
+    /// </summary>
+    /// <param name="services">IoC container.</param>
+    /// <returns>Services.</returns>
+    public static IServiceCollection AddNamedHttpClients(this IServiceCollection services)
+    {
+        services.AddHttpClient<IJwtTokenProvider, JwtTokenProvider>((sp, client) =>
+        {
+            var config = sp.GetRequiredService<IConfiguration>();
+            client.BaseAddress = new Uri(config["Authentication:TokenUri"]!);
+        });
+
+        return services;
+    }
+
     public static IServiceCollection AddCarViewerDbContext(
         this IServiceCollection services,
         IConfiguration config)
@@ -34,7 +52,7 @@ public static class InfrastructureServices
 
         return services;
     }
-    
+
     private static IServiceCollection AddIdentityService(this IServiceCollection services,
         IConfiguration config)
     {
@@ -48,7 +66,9 @@ public static class InfrastructureServices
     }
 
     private static IServiceCollection AddRepositories(this IServiceCollection services)
-        => services.AddScoped<IUserRepository, UserRepository>();
+        => services
+            .AddScoped<IUnitOfWork, UnitOfWork>()   
+            .AddScoped<IUserRepository, UserRepository>();
 
     private static IServiceCollection AddFirebaseService(
         this IServiceCollection services,

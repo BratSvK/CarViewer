@@ -1,4 +1,6 @@
 using System.Reflection;
+using System.Security.Claims;
+using CarViewer.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Serilog;
 

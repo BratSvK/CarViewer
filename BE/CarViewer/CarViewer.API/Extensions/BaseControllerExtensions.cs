@@ -15,7 +15,7 @@ public static class BaseControllerExtensions
     /// <param name="controller">Controller.</param>
     /// <param name="request">Request.</param>
     /// <returns>Response from request.</returns>
-    public static async Task<Result<TResponse>> SendRequest<TResponse>(
+    public static async Task<TResponse> SendRequest<TResponse>(
         this ControllerBase controller,
         IQuery<TResponse> request)
         => await controller.Mediator().QueryAsync(request);
@@ -27,13 +27,11 @@ public static class BaseControllerExtensions
     /// <param name="controller">Controller.</param>
     /// <param name="command">Create command.</param>
     /// <returns><see cref="CreatedResult"/> Result object</returns>
-    public static async Task<Result<TResponse>> SendCreateCommand<TResponse>(
+    public static async Task<TResponse> SendCreateCommand<TResponse>(
         this ControllerBase controller,
-        ICommand<TResponse> command)
-    {
-        return await controller.Mediator().SendAsync(command);
-    }
-    
+        ICommand<TResponse> command) 
+        => await controller.Mediator().SendAsync(command);
+
     private static IDispatcher Mediator(this ControllerBase controller)
         => (IDispatcher)controller.HttpContext.RequestServices.GetService(typeof(IDispatcher))!;
 }

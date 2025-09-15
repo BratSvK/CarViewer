@@ -1,4 +1,3 @@
-using Ardalis.Result;
 using CarViewer.Application.DTO.Auth;
 using CarViewer.Domain.Entities.Auth;
 
@@ -22,18 +21,26 @@ public interface IUserRepository
     /// <param name="email">User email.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     Task<bool> UserExistsAsync(string email, CancellationToken cancellationToken = default);
+    
+    /// <summary>
+    /// Remember login date.
+    /// </summary>
+    /// <param name="identityId">User identity ID.</param>
+    /// <param name="cancellationToken">Cancel token.</param>
+    Task RememberLoginDateAsync(string identityId, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Get user by id.
     /// </summary>
     /// <param name="userId">User id.</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    Task<UserDTO> GetUserById(Guid userId, CancellationToken cancellationToken = default);
+    Task<TO?> GetUserByIdAsync<TO>(Guid userId, CancellationToken cancellationToken = default)
+        where TO : IProjectionEntity;
 
     /// <summary>
     /// Delete user by id.
     /// </summary>
     /// <param name="userId">User Id.</param>
     /// <param name="cancellationToken">Token.</param>
-    Task DeleteUserById(Guid userId, CancellationToken cancellationToken = default);
+    Task DeleteUserByIdAsync(Guid userId, CancellationToken cancellationToken = default);
 }

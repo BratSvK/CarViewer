@@ -17,7 +17,7 @@ internal class FirebaseService : IAuthenticationService
     
     public async Task<Result<string>> RegisterAsync(
         FirebaseRegisterDTO registerUser,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         var userArgs = new UserRecordArgs
         {
@@ -40,6 +40,6 @@ internal class FirebaseService : IAuthenticationService
         }
     }
 
-    public async Task DeleteUser(string identityId, CancellationToken cancellationToken) =>
+    public async Task DeleteUserAsync(string identityId, CancellationToken cancellationToken = default) =>
         await FirebaseAuth.DefaultInstance.DeleteUserAsync(identityId, cancellationToken);
 }

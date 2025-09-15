@@ -21,5 +21,5 @@ public interface IAuthenticationService
     /// </summary>
     /// <param name="identityId">User identity ID.</param>
     /// <param name="cancellationToken">token.</param>
-    Task DeleteUser(string identityId, CancellationToken cancellationToken = default);
+    Task DeleteUserAsync(string identityId, CancellationToken cancellationToken = default);
 }
