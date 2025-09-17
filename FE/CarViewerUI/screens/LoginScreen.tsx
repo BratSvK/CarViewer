@@ -55,9 +55,9 @@ const LoginScreen = () => {
     // Tu môže byť volanie na backend/Firebase
     console.log("isLoggedIn state before login:", isLoggedIn);
     console.log("Attempting login with:", data);
-    const response = await authService.tryAPI("Test payload for API call");
-    console.log("API Response:", response);
-    // Po úspešnom prihlásení aktualizujeme stav v Redux store
+    // const response = await authService.tryAPI("Test payload for API call");
+    console.log("API Response:", null);
+    // Po úspešnom prihlásrní aktualizujeme stav v Redux store
     dispatch(login({ name: "Mock User", email: data.email }));
     // Navigácia na hlavnú obrazovku po úspešnom prihlásení
   };

@@ -6,15 +6,13 @@ const BASE_PATH = "/auth";
 const authService = {
   async register(email: string, password: string): Promise<AuthUser> {
     console.log("Register called with:", email, password);
-    
+    // const res = await http.post(`${BASE_PATH}/register`, `"${payload}"`);
+
+
     return { uid: "sdfsfsfsdfsfsf", email: "fake@gmail.com" }; 
   },
 
   async login(email: string, password: string): Promise<AuthUser> {
-    // const userCredential = await auth().signInWithEmailAndPassword(email, password);
-    // const user = userCredential.user;
-    // return { uid: user.uid, email: user.email };
-
     console.log("Login called with:", email, password);
     return { uid: "sdfsfsfsdfsfsf", email: "fake@gmail.com" }; 
   },
