@@ -4,6 +4,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import Toast from 'react-native-toast-message';
 import * as Yup from 'yup';
 import AbstractText from '../components/AbstractText';
 import ValidatedInput from '../components/ValidationInput';
@@ -15,7 +16,6 @@ const RegisterScreen = () => {
 
   // Validation schema using Yup
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required(LOCALIZATION.validation.nameRequired),
     email: Yup.string()
       .email(LOCALIZATION.validation.invalidEmail)
       .required(LOCALIZATION.validation.emailRequired),
@@ -32,19 +32,25 @@ const RegisterScreen = () => {
   } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
-      name: '',
       email: '',
       password: '',
     },
   });
 
   const handleRegister = (data: {
-    name: string;
     email: string;
     password: string;
   }) => {
     console.log("Registering user with data:", data);
     // Add registration logic here (e.g., API call)
+    
+    Toast.show({
+      type: "success",
+      text1: "Login successful",
+      text2: "Welcome back 🚀",
+    });
+
+    navigation.navigate("Login");
   };
 
   return (

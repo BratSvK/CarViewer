@@ -24,6 +24,8 @@
     "react-native-country-flag-data": "file:packages/react-native-country-flag-data",
     "react-native-localize": "^3.5.2",
     "react-native-svg": "^15.12.1",
+    "react-native-toast-message": "^2.3.3",
+    "react-native-vector-icons": "^10.3.0",
     "react-redux": "^9.2.0",
     "yup": "^1.7.0"
   },
