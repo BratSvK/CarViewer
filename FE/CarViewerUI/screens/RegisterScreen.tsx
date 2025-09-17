@@ -55,13 +55,6 @@ const RegisterScreen = () => {
       />
       <ValidatedInput
         control={control}
-        name="name"
-        placeholderKey={LOCALIZATION.registerScreen.username}
-        errors={errors}
-        style={styles.input}
-      />
-      <ValidatedInput
-        control={control}
         name="email"
         placeholderKey={LOCALIZATION.forms.email}
         errors={errors}

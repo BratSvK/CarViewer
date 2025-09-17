@@ -30,7 +30,6 @@ const LOCALIZATION = {
   },
   registerScreen: {
     createAccount: 'register',
-    username: 'username',
     registerButton: 'register_button',
     loginPrompt: 'login_prompt',
   },
