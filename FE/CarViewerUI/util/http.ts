@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Vytvoríme inštanciu axiosu s default nastaveniami
 const http = axios.create({
-  baseURL: 'http://localhost:5001/api',
+  baseURL: 'https://localhost:5001/api',
   timeout: 10000, // 10 sekúnd timeout
   headers: {
     'Content-Type': 'application/json',

@@ -4,15 +4,20 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import Toast from 'react-native-toast-message';
 import * as Yup from 'yup';
 import AbstractText from '../components/AbstractText';
 import ValidatedInput from '../components/ValidationInput';
 import LOCALIZATION from '../constants/localization';
 import { AuthStackParamList } from '../navigation/AuthNavigator';
+import authService from '../services/authService';
+import { register } from '../store/auth';
+import { useAppDispatch } from '../store/hooks';
+import { RegisterUserCommand } from '../types/auth/registerUserRequest';
+import { showToast } from '../util/toast';
 
 const RegisterScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+  const dispatch = useAppDispatch();
 
   // Validation schema using Yup
   const validationSchema = Yup.object().shape({
@@ -37,20 +42,24 @@ const RegisterScreen = () => {
     },
   });
 
-  const handleRegister = (data: {
+  const handleRegister = async (data: {
     email: string;
     password: string;
   }) => {
     console.log("Registering user with data:", data);
-    // Add registration logic here (e.g., API call)
-    
-    Toast.show({
-      type: "success",
-      text1: "Login successful",
-      text2: "Welcome back 🚀",
-    });
+    const request: RegisterUserCommand = {
+      email: data.email,
+      password: data.password,
+    };
 
-    navigation.navigate("Login");
+    try {
+      const user = await authService.register(request);
+      dispatch(register(user));
+      showToast("success", "Registration successful");
+      navigation.navigate("Login");
+    } catch (err: any) {
+      showToast("error", err.message);
+    }
   };
 
   return (

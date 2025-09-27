@@ -2,14 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type UserState = {
   isLoggedIn: boolean;
-  name: string;
-  email: string;
+  uid: string;
 };
 
 const initialState: UserState = {
   isLoggedIn: false,
-  name: '',
-  email: '',
+  uid: '',
 };
 
 const authSlice = createSlice({
@@ -25,21 +23,18 @@ const authSlice = createSlice({
   // They are pure functions that take the current state and an action as arguments
   // and return a new state object
   reducers: {
-    login(state, action: PayloadAction<{ name: string; email: string }>) {
+    login(state, action: PayloadAction<{ uid: string; }>) {
       console.log("Logging in user:", action.payload);
       state.isLoggedIn = true;
-      state.name = action.payload.name;
-      state.email = action.payload.email;
+      state.uid = action.payload.uid;
     },
     logout(state) {
       state.isLoggedIn = false;
-      state.name = '';
-      state.email = '';
+      state.uid = '';
     },
-    register(state, action: PayloadAction<{ name: string; email: string }>) {
+    register(state, action: PayloadAction<{ uid: string; }>) {
       state.isLoggedIn = true;
-      state.name = action.payload.name;
-      state.email = action.payload.email;
+      state.uid = action.payload.uid;
     }
   },
 });

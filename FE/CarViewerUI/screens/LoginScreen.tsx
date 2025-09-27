@@ -58,7 +58,7 @@ const LoginScreen = () => {
     // const response = await authService.tryAPI("Test payload for API call");
     console.log("API Response:", null);
     // Po úspešnom prihlásrní aktualizujeme stav v Redux store
-    dispatch(login({ name: "Mock User", email: data.email }));
+    dispatch(login({ uid: "sfsfsdfsfsf" }));
     // Navigácia na hlavnú obrazovku po úspešnom prihlásení
   };
 
