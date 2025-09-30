@@ -13,12 +13,11 @@ builder.Services.AddNamedHttpClients();
 builder.Services.AddLoggerService(builder.Configuration);
 builder.Services.AddControllers();
 
-
 builder.Host.UseSerilog(Log.Logger);
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.MapControllers();
 app.UseSerilogRequestLogging();
 app.Run();

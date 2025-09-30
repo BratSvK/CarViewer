@@ -20,8 +20,6 @@ public class AuthController : BaseController
     
     [HttpGet("login")]
     [TranslateResultToActionResult]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LoggedUserDTO))]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<Result<LoggedUserDTO>> Login()
     {
         Request.Headers.TryGetValue("Authorization", out var authorization);
@@ -41,10 +39,12 @@ public class AuthController : BaseController
     
     [HttpDelete("{userId:guid}")]
     [TranslateResultToActionResult]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    // [ProducesResponseType(StatusCodes.Status204NoContent)]
+    // [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<Result<bool>> RegisterUser(Guid userId)
         => await this.SendCreateCommand(new RemoveUser.RemoveUserCommand(userId));
+
+    #region  Testing Purpose Only
     
     [HttpPost("demo")]
     [TranslateResultToActionResult]
@@ -57,4 +57,6 @@ public class AuthController : BaseController
         
         return Result.Success(res);
     }
+    
+    #endregion
 }

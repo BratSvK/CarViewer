@@ -15,6 +15,7 @@ import authService from "../services/authService";
 import { RootState } from "../store";
 import { login } from "../store/auth";
 import { useAppDispatch } from "../store/hooks";
+import { showToast } from "../util/toast";
 
 const LoginScreen = () => {
   const navigation =
@@ -52,14 +53,14 @@ const LoginScreen = () => {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
   const handleLogin = async (data: { email: string; password: string }) => {
-    // Tu môže byť volanie na backend/Firebase
     console.log("isLoggedIn state before login:", isLoggedIn);
     console.log("Attempting login with:", data);
-    // const response = await authService.tryAPI("Test payload for API call");
-    console.log("API Response:", null);
-    // Po úspešnom prihlásrní aktualizujeme stav v Redux store
-    dispatch(login({ uid: "sfsfsdfsfsf" }));
-    // Navigácia na hlavnú obrazovku po úspešnom prihlásení
+
+      const user = await authService.login(data.email, data.password);
+      dispatch(login(user));
+
+      console.log("Login successful, user:", user);
+      showToast("success", "Login successful!");
   };
 
   var imageLogo = require("../assets/logo_welcome.png");

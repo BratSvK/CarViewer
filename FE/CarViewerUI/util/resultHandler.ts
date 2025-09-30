@@ -6,6 +6,8 @@ import { Result } from "../types/result";
  * - Throws a descriptive Error otherwise
  */
 export function handleResult<T>(result: Result<T>): T {
+  console.log("Handling result:", result);
+  
   const isSuccess =
     result.status === "Ok" ||
     result.status === "Created" ||

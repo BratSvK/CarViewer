@@ -1,3 +1,4 @@
+import { Buffer } from "buffer";
 import { AuthUser } from "../types/auth/authUser";
 import { RegisterUserCommand } from "../types/auth/registerUserRequest";
 import { Result } from "../types/result";
@@ -5,6 +6,13 @@ import http from "../util/http";
 import { handleResult } from "../util/resultHandler";
 
 const BASE_PATH = "/auth";
+
+function hashCredentials(email: string, password: string) {
+  const token = `${email}:${password}`;
+  const encodedToken = Buffer.from(token).toString("base64");
+
+  return encodedToken;
+}
 
 const authService = {
   async register(request: RegisterUserCommand): Promise<AuthUser> {
@@ -14,14 +22,22 @@ const authService = {
       request
     );
 
-    console.log("Response from register API:", res.data);
     const result: string = handleResult(res.data);
 
     return { uid: result };
   },
 
   async login(email: string, password: string): Promise<AuthUser> {
-    console.log("Login called with:", email, password);
+    const res = await http.get<Result<string>>(`${BASE_PATH}/login`, {
+      headers: {
+        Authorization: `Basic ${hashCredentials(email, password)}`,
+      },
+    });
+
+    console.log("Response from login API:", res.data);
+    // const result: string = handleResult(res.data);
+    // console.log("Login successful, uid:", result);
+
     return { uid: "sdfsfsfsdfsfsf" };
   },
 

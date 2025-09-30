@@ -16,5 +16,8 @@
   "validation_name_required": "Name is required",
   "forgot_password_prompt": "Password Recovery",
   "submit": "Submit",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "unauthorized": "Unauthorized access. Please log in again.",
+  "network_error": "Network error. Please try again later.",
+  "unknown_error": "An unknown error occurred. Please try again."
 }

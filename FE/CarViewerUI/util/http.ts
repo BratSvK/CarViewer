@@ -1,11 +1,14 @@
 import axios from 'axios';
+import LOCALIZATION from '../constants/localization';
+import { showToast } from './toast';
 
 // Vytvoríme inštanciu axiosu s default nastaveniami
 const http = axios.create({
-  baseURL: 'https://localhost:5001/api',
-  timeout: 10000, // 10 sekúnd timeout
+  baseURL: "http://10.10.194.186:5001/api",
+  // timeout: 10000, // 10 sekúnd timeout
+  timeout: 100000, // 100 sekúnd timeout
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
@@ -22,5 +25,22 @@ const http = axios.create({
 //   },
 //   (error) => Promise.reject(error)
 // );
+
+http.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.log("HTTP error response:", error);
+    if (error.response?.status === 401) {
+      showToast("error", LOCALIZATION.httpErrors.unauthorized);
+    } 
+    else {
+      const message =
+        error.response?.data?.message || LOCALIZATION.httpErrors.networkError;
+      showToast("error", message);
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export default http;

@@ -1,22 +1,23 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import * as Yup from 'yup';
-import AbstractText from '../components/AbstractText';
-import ValidatedInput from '../components/ValidationInput';
-import LOCALIZATION from '../constants/localization';
-import { AuthStackParamList } from '../navigation/AuthNavigator';
-import authService from '../services/authService';
-import { register } from '../store/auth';
-import { useAppDispatch } from '../store/hooks';
-import { RegisterUserCommand } from '../types/auth/registerUserRequest';
-import { showToast } from '../util/toast';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import * as Yup from "yup";
+import AbstractText from "../components/AbstractText";
+import ValidatedInput from "../components/ValidationInput";
+import LOCALIZATION from "../constants/localization";
+import { AuthStackParamList } from "../navigation/AuthNavigator";
+import authService from "../services/authService";
+import { register } from "../store/auth";
+import { useAppDispatch } from "../store/hooks";
+import { RegisterUserCommand } from "../types/auth/registerUserRequest";
+import { showToast } from "../util/toast";
 
 const RegisterScreen = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
   const dispatch = useAppDispatch();
 
   // Validation schema using Yup
@@ -37,29 +38,22 @@ const RegisterScreen = () => {
   } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
   });
 
-  const handleRegister = async (data: {
-    email: string;
-    password: string;
-  }) => {
-    console.log("Registering user with data:", data);
+  const handleRegister = async (data: { email: string; password: string }) => {
     const request: RegisterUserCommand = {
       email: data.email,
       password: data.password,
     };
 
-    try {
-      const user = await authService.register(request);
-      dispatch(register(user));
-      showToast("success", "Registration successful");
-      navigation.navigate("Login");
-    } catch (err: any) {
-      showToast("error", err.message);
-    }
+    const user = await authService.register(request);
+    dispatch(register(user));
+
+    showToast("success", "Registration successful");
+    navigation.navigate("Login");
   };
 
   return (
@@ -106,45 +100,45 @@ const RegisterScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#161629',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#161629",
+    justifyContent: "center",
+    alignItems: "center",
     paddingHorizontal: 28,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
     marginBottom: 36,
   },
   input: {
-    width: '100%',
-    backgroundColor: '#23234b',
-    color: '#fff',
+    width: "100%",
+    backgroundColor: "#23234b",
+    color: "#fff",
     padding: 14,
     borderRadius: 8,
     marginBottom: 16,
     fontSize: 16,
   },
   forgot: {
-    alignSelf: 'flex-end',
-    color: '#AAAFFF',
+    alignSelf: "flex-end",
+    color: "#AAAFFF",
     marginBottom: 28,
   },
   button: {
-    backgroundColor: '#3a36db',
+    backgroundColor: "#3a36db",
     paddingVertical: 14,
     paddingHorizontal: 80,
     borderRadius: 8,
     marginBottom: 18,
   },
   buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
     fontSize: 17,
   },
   switch: {
-    color: '#aaa',
+    color: "#aaa",
     marginTop: 10,
   },
 });

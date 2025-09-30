@@ -7,6 +7,7 @@
   "sign_up_prompt": "Nemáte účet? Zaregistrujte sa",
   "email_placeholder": "Zadajte svoj email",
   "password_placeholder": "Zadajte svoje heslo",
+  "username": "Používateľské meno",
   "login_prompt": "Už máte účet? Prihlásiť sa",
   "register_button": "Zaregistrovať sa",
   "validation_invalid_email": "Neplatná emailová adresa",
@@ -16,5 +17,8 @@
   "validation_name_required": "Meno je povinné",
   "forgot_password_prompt": "Obnovenie hesla",
   "submit": "Odoslať",
-  "cancel": "Zrušiť"
+  "cancel": "Zrušiť",
+  "unauthorized": "Neautorizovaný prístup. Prosím, prihláste sa znova.",
+  "network_error": "Chyba siete. Skúste to znova neskôr.",
+  "unknown_error": "Nastala neznáma chyba. Skúste to znova."
 }

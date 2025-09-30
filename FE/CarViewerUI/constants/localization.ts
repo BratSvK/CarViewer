@@ -32,7 +32,11 @@ const LOCALIZATION = {
     registerButton: 'register_button',
     loginPrompt: 'login_prompt',
   },
-  // Add other screens here
+  httpErrors: {
+    networkError: 'network_error',
+    unauthorized: 'unauthorized',
+    unknownError: 'unknown_error',
+  },
 };
 
 export const SUPPORTED_LNG_NAMES = {
