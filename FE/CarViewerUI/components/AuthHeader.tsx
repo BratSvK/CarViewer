@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import LanguageFlag from "./LanguageFlag";
 
-const CustomHeader = () => {
+const AuthHeader = () => {
   return (
     <View style={styles.container}>
       <LanguageFlag />
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomHeader;
+export default AuthHeader;

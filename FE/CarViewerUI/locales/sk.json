@@ -21,5 +21,11 @@
   "unauthorized": "Neautorizovaný prístup. Prosím, prihláste sa znova.",
   "network_error": "Chyba siete. Skúste to znova neskôr.",
   "unknown_error": "Nastala neznáma chyba. Skúste to znova.",
-  "registration_success": "Registrácia bola úspešná!"
+  "registration_success": "Registrácia bola úspešná!",
+  "logout_alert": "Odhlásiť sa",
+  "logout_inner_alert": "Naozaj sa chcete odhlásiť?",
+  "logout_confirm": "Odhlásiť sa",
+  "logout_cancel": "Zrušiť",
+  "home_tab": "Domov",
+  "car_tab": "Auto"
 }

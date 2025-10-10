@@ -11,14 +11,12 @@ const LOCALIZATION = {
     password: 'password_placeholder',
     submit: 'submit',
     cancel: 'cancel',
-    // Add other form-related terms here
   },
   validation: {
     invalidEmail: 'validation_invalid_email',
     emailRequired: 'validation_email_required',
     passwordMin: 'validation_password_min',
     passwordRequired: 'validation_password_required',
-    // Add other validation messages here
   },
   loginScreen: {
     welcome: 'welcome',
@@ -38,6 +36,14 @@ const LOCALIZATION = {
     unauthorized: 'unauthorized',
     unknownError: 'unknown_error',
   },
+  homeScreen: {
+    logoutAlert: 'logout_alert',
+    logoutInnerAlert: 'logout_inner_alert',
+    logoutConfirm: 'logout_confirm',
+    logoutCancel: 'logout_cancel',
+    homeTab: 'home_tab',
+    carTab: 'car_tab',
+  }
 };
 
 export const SUPPORTED_LNG_NAMES = {

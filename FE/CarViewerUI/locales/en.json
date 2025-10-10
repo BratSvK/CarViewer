@@ -20,5 +20,11 @@
   "unauthorized": "Unauthorized access. Please log in again.",
   "network_error": "Network error. Please try again later.",
   "unknown_error": "An unknown error occurred. Please try again.",
-  "registration_success": "Registration successful!"
+  "registration_success": "Registration successful!",
+  "logout_alert": "Are you sure you want to logout?",
+  "logout_inner_alert": "You will need to login again to access your account.",
+  "logout_confirm": "Logout",
+  "logout_cancel": "Cancel",
+  "home_tab": "Home",
+  "car_tab": "Car"
 }

@@ -1,22 +1,10 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { logout } from '../store/auth';
+import { StyleSheet, Text, View } from 'react-native';
 
 const HomeScreen: React.FC = () => {
-const dispatch = useDispatch();
-const uid = useSelector((state: RootState) => state.auth.uid);
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Home Screen</Text>
-      <Text style={styles.uidText}>UID: {uid}</Text>
-      <Button title="Logout" onPress={handleLogout} />
     </View>
   );
 };
