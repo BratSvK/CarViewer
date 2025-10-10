@@ -19,7 +19,6 @@ export default function HomeNavigator() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           header: () => <HomeHeader />,
-          animation: "none",
           tabBarIcon: ({ color, size }) => {
             const iconName =
               route.name === "Home"
@@ -28,10 +27,12 @@ export default function HomeNavigator() {
                 ? "car"
                 : "question";
             
-            return <FontAwesome6 name={iconName} iconStyle="solid" size={size} color={color} />;
+            return <FontAwesome6 name={iconName} iconStyle="solid" size={size} color={color}  />;
           },
-          tabBarActiveTintColor: "#3a36db", // Active tab color
-          tabBarInactiveTintColor: "gray", // Inactive tab color
+          tabBarActiveTintColor: "#3a36db",
+          tabBarInactiveTintColor: "gray",
+          tabBarShowLabel: false,
+          animation: 'none'
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
