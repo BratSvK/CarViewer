@@ -31,6 +31,7 @@ const LOCALIZATION = {
     createAccount: 'register',
     registerButton: 'register_button',
     loginPrompt: 'login_prompt',
+    registerSuccess: 'registration_success',
   },
   httpErrors: {
     networkError: 'network_error',

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store';
 import { logout } from '../store/auth';
 
 const HomeScreen: React.FC = () => {
 const dispatch = useDispatch();
+const uid = useSelector((state: RootState) => state.auth.uid);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -13,6 +15,7 @@ const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Home Screen</Text>
+      <Text style={styles.uidText}>UID: {uid}</Text>
       <Button title="Logout" onPress={handleLogout} />
     </View>
   );
@@ -27,6 +30,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  uidText: {
+    fontSize: 18,
+    marginBottom: 20,
+    color: 'gray',
   },
 });
 

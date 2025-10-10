@@ -20,5 +20,6 @@
   "cancel": "Zrušiť",
   "unauthorized": "Neautorizovaný prístup. Prosím, prihláste sa znova.",
   "network_error": "Chyba siete. Skúste to znova neskôr.",
-  "unknown_error": "Nastala neznáma chyba. Skúste to znova."
+  "unknown_error": "Nastala neznáma chyba. Skúste to znova.",
+  "registration_success": "Registrácia bola úspešná!"
 }

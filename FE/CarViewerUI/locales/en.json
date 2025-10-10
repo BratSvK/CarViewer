@@ -19,5 +19,6 @@
   "cancel": "Cancel",
   "unauthorized": "Unauthorized access. Please log in again.",
   "network_error": "Network error. Please try again later.",
-  "unknown_error": "An unknown error occurred. Please try again."
+  "unknown_error": "An unknown error occurred. Please try again.",
+  "registration_success": "Registration successful!"
 }

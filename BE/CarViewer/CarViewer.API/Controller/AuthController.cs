@@ -55,7 +55,9 @@ public class AuthController : BaseController
         string demoText = $"Received: {payload}";
         var res = await this.SendRequest(new DemoTest.DemoTestQuery(demoText));
         
-        return Result.Success(res);
+        var result =  Result.Success(res);
+
+        return result;
     }
     
     #endregion

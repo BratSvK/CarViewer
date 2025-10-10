@@ -36,8 +36,9 @@ public static class LoginUser
             }
 
             await _userRepository.RememberLoginDateAsync(token.LocalId, cancellationToken);
+            Guid userId = await _userRepository.GetUserIdByIdentityIdAsync(token.LocalId, cancellationToken);
 
-            return Result.Success(new LoggedUserDTO(token.IdToken));
+            return Result.Success(new LoggedUserDTO(userId, token.IdToken));
         }
     }
 }

@@ -36,6 +36,13 @@ public interface IUserRepository
     /// <param name="cancellationToken">Cancellation token</param>
     Task<TO?> GetUserByIdAsync<TO>(Guid userId, CancellationToken cancellationToken = default)
         where TO : IProjectionEntity;
+    
+    /// <summary>
+    /// Get logged user id by identity id.
+    /// </summary>
+    /// <param name="identityId">Token identity provider ID.</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    Task<Guid> GetUserIdByIdentityIdAsync(string identityId, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Delete user by id.

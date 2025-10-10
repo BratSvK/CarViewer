@@ -4,9 +4,8 @@ import { showToast } from './toast';
 
 // Vytvoríme inštanciu axiosu s default nastaveniami
 const http = axios.create({
-  baseURL: "http://10.10.194.186:5001/api",
-  // timeout: 10000, // 10 sekúnd timeout
-  timeout: 100000, // 100 sekúnd timeout
+  baseURL: "http://192.168.1.102:5001/api",
+  timeout: 10000, // 10 sekúnd timeout
   headers: {
     "Content-Type": "application/json",
   },
@@ -29,7 +28,7 @@ const http = axios.create({
 http.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.log("HTTP error response:", error);
+    console.error("HTTP Error:", error);
     if (error.response?.status === 401) {
       showToast("error", LOCALIZATION.httpErrors.unauthorized);
     } 

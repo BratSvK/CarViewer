@@ -4,7 +4,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import AbstractText from "../components/AbstractText";
 import ForgotPasswordModal from "../components/ForgotPasswordModal";
@@ -12,7 +11,6 @@ import ValidatedInput from "../components/ValidationInput";
 import LOCALIZATION from "../constants/localization";
 import { AuthStackParamList } from "../navigation/AuthNavigator";
 import authService from "../services/authService";
-import { RootState } from "../store";
 import { login } from "../store/auth";
 import { useAppDispatch } from "../store/hooks";
 import { showToast } from "../util/toast";
@@ -50,17 +48,12 @@ const LoginScreen = () => {
       password: "",
     },
   });
-  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
   const handleLogin = async (data: { email: string; password: string }) => {
-    console.log("isLoggedIn state before login:", isLoggedIn);
-    console.log("Attempting login with:", data);
+    const user = await authService.login(data.email, data.password);
+    dispatch(login(user));
 
-      const user = await authService.login(data.email, data.password);
-      dispatch(login(user));
-
-      console.log("Login successful, user:", user);
-      showToast("success", "Login successful!");
+    showToast("success", "Login successful!");
   };
 
   var imageLogo = require("../assets/logo_welcome.png");

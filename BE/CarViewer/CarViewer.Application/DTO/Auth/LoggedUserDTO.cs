@@ -1,3 +1,3 @@
 namespace CarViewer.Application.DTO.Auth;
 
-public record LoggedUserDTO(string Token);
+public record LoggedUserDTO(Guid UserId, string Token);

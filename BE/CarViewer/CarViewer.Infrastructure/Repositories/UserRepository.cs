@@ -66,12 +66,13 @@ internal class UserRepository : BaseRepository<User, Guid>, IUserRepository
         where TO : IProjectionEntity =>
         await GetAsync<TO>(userId, cancellationToken);
 
-    public async Task<UserDTO?> GetUserByIdAsync(Guid userId, CancellationToken cancellationToken)
+    public Task<Guid> GetUserIdByIdentityIdAsync(string identityId, CancellationToken cancellationToken = default)
     {
-        return await DbContext.Users
-            .Where(x => x.Id == userId)
-            .ProjectToType<UserDTO>()
-            .SingleOrDefaultAsync(cancellationToken);
+        return DbContext.Users
+            .AsNoTracking()
+            .Where(x => x.IdentityId == identityId)
+            .Select(x => x.Id)
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task DeleteUserByIdAsync(Guid userId, CancellationToken cancellationToken)

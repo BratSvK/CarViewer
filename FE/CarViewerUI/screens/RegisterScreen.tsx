@@ -52,7 +52,7 @@ const RegisterScreen = () => {
     const user = await authService.register(request);
     dispatch(register(user));
 
-    showToast("success", "Registration successful");
+    showToast("success", LOCALIZATION.registerScreen.registerSuccess);
     navigation.navigate("Login");
   };
 
