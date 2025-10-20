@@ -1,7 +1,9 @@
 import { FontAwesome6 } from "@react-native-vector-icons/fontawesome6";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import HomeHeader from "../components/HomeHeader";
+import HomeHeader from "../components/home/HomeStatusBar";
+import { SCREENS } from "../constants/screens";
+import { GlobalStyles } from "../constants/styles";
 import CarScreen from "../screens/CarScreen";
 import HomeScreen from "../screens/HomeScreen";
 
@@ -26,17 +28,31 @@ export default function HomeNavigator() {
                 : route.name === "Car"
                 ? "car"
                 : "question";
-            
-            return <FontAwesome6 name={iconName} iconStyle="solid" size={size} color={color}  />;
+
+            return (
+              <FontAwesome6
+                name={iconName}
+                iconStyle="solid"
+                size={size}
+                color={color}
+              />
+            );
           },
-          tabBarActiveTintColor: "#3a36db",
-          tabBarInactiveTintColor: "gray",
+          tabBarActiveTintColor: GlobalStyles.colors.primary500,
+          tabBarInactiveTintColor: GlobalStyles.colors.primary100,
           tabBarShowLabel: false,
-          animation: 'none'
+          tabBarIconStyle: {
+            marginTop: 8,
+          },
+          tabBarStyle: {
+            backgroundColor: GlobalStyles.colors.primary800,
+            borderTopColor: GlobalStyles.colors.primary400,
+          },
+          animation: "none",
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Car" component={CarScreen} />
+        <Tab.Screen name={SCREENS.HOME as never} component={HomeScreen} />
+        <Tab.Screen name={SCREENS.CAR as never} component={CarScreen} />
       </Tab.Navigator>
     </>
   );

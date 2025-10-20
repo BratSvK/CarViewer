@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { STORE_KEYS } from '../constants/slices';
 
 type UserState = {
   isLoggedIn: boolean;
@@ -11,7 +12,7 @@ const initialState: UserState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: STORE_KEYS.AUTH,
   initialState,
   // Reducers are functions that handle actions and update the state
   // They receive the current state and an action as arguments

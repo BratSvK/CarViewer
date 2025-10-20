@@ -1,8 +1,8 @@
 // components/CustomHeader.tsx
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { GlobalStyles } from "../constants/styles";
-import LanguageFlag from "./LanguageFlag";
+import { GlobalStyles } from "../../constants/styles";
+import LanguageFlag from "../LanguageFlag";
 
 const AuthHeader = () => {
   return (

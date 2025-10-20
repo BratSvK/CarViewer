@@ -9,6 +9,7 @@ import AbstractText from "../components/AbstractText";
 import ForgotPasswordModal from "../components/ForgotPasswordModal";
 import ValidatedInput from "../components/ValidationInput";
 import LOCALIZATION from "../constants/localization";
+import { SCREENS } from "../constants/screens";
 import { AuthStackParamList } from "../navigation/AuthNavigator";
 import authService from "../services/authService";
 import { login } from "../store/auth";
@@ -92,7 +93,7 @@ const LoginScreen = () => {
           style={styles.buttonText}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+      <TouchableOpacity onPress={() => navigation.navigate(SCREENS.REGISTER as never)}>
         <AbstractText
           textKey={LOCALIZATION.loginScreen.signUpPrompt}
           style={styles.switch}

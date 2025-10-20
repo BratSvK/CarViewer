@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth';
+import garageReducer from './home/garage';
 
 // Separete files for features
 // and combine them in the store
@@ -8,7 +9,8 @@ export const store = configureStore({
   // Each slice can have its own reducer and actions
   // This allows for better organization and separation of concerns
   reducer: {
-    auth: authReducer
+    auth: authReducer,
+    garage: garageReducer
   },
 });
 

@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import AbstractText from "../components/AbstractText";
 import ValidatedInput from "../components/ValidationInput";
 import LOCALIZATION from "../constants/localization";
+import { SCREENS } from "../constants/screens";
 import { AuthStackParamList } from "../navigation/AuthNavigator";
 import authService from "../services/authService";
 import { register } from "../store/auth";
@@ -53,7 +54,7 @@ const RegisterScreen = () => {
     dispatch(register(user));
 
     showToast("success", LOCALIZATION.registerScreen.registerSuccess);
-    navigation.navigate("Login");
+    navigation.navigate(SCREENS.LOGIN as never);
   };
 
   return (
