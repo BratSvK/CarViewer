@@ -8,9 +8,30 @@ interface GarageState {
 
 const initialState: GarageState = {
   items: [
-    { id: "1", name: "Hlavná garáž", carCount: 3, imageUrl: "", ownerId: "user1", isShared: false },
-    { id: "2", name: "Letná garáž", carCount: 2, imageUrl: "", ownerId: "user1", isShared: false },
-    { id: "3", name: "Zdieľaná garáž", carCount: 5, imageUrl: "", ownerId: "user2", isShared: true },
+    {
+      id: "1",
+      name: "Hlavná garáž",
+      carCount: 3,
+      imageUrl: "",
+      ownerId: "user1",
+      isShared: false,
+    },
+    {
+      id: "2",
+      name: "Letná garáž",
+      carCount: 2,
+      imageUrl: "",
+      ownerId: "user1",
+      isShared: false,
+    },
+    // {
+    //   id: "3",
+    //   name: "Zdieľaná garáž",
+    //   carCount: 5,
+    //   imageUrl: "",
+    //   ownerId: "user2",
+    //   isShared: true,
+    // },
   ],
 };
 

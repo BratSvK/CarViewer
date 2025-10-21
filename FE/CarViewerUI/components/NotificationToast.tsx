@@ -5,7 +5,7 @@ import { Text, View } from "react-native";
 type Props = {
   text1?: string;
   text2?: string;
-  type: "success" | "error" | "warning";
+  type: "success" | "info" | "error" | "warning";
 };
 
 export const NotificationToast = ({ text1, text2, type }: Props) => {
@@ -18,6 +18,11 @@ export const NotificationToast = ({ text1, text2, type }: Props) => {
       bgColor = "#d4edda";
       icon = "checkmark-circle";
       iconColor = "#28a745";
+      break;
+    case "info":
+      bgColor = "#d1ecf1";
+      icon = "information-circle";
+      iconColor = "#17a2b8";
       break;
     case "error":
       bgColor = "#f8d7da";

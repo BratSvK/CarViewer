@@ -5,10 +5,10 @@ import AbstractText from "../AbstractText";
 import LogoutButton from "../LogoutButton";
 
 type HeaderProps = {
-  title: string; // Pass the title dynamically
+  title: string;
 };
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const HomeHeader = ({ title }: HeaderProps) => {
   return (
     <View style={styles.header}>
       <AbstractText textKey={title} style={styles.headerTitle} />
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default HomeHeader;

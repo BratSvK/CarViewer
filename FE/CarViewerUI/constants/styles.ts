@@ -5,10 +5,10 @@ export const GlobalStyles = {
     primary100: "#999999", // mutedForeground
     primary200: "#2e2e2e", // secondary / muted / input / accent
     primary400: "#333333", // border
-    primary500: "#6d2edd", // primary / ring
-    primary700: "#ff3366", // destructive
-    primary800: "#1a1a1a", // background
-    primaryMuted800: "#232222ff", // background-muted
+    primary500: "#7C3BED", // primary / ring
+    primary800: "#17171C", // background
+    primaryMuted800: "#303036", // background-muted
+    danger500: "#E02424", // danger
   },
 
   radius: 12,

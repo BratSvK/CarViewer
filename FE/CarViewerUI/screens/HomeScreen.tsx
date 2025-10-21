@@ -2,21 +2,23 @@ import FontAwesome6 from "@react-native-vector-icons/fontawesome6";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
-  Alert,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { EmptyContainer } from "../components/EmptyContainer";
 import CreateGarageDialog from "../components/home/garage/CrateGarageModal";
-import GarageCard from "../components/home/garage/GarageCard";
-import LogoutButton from "../components/LogoutButton";
+import SwipeableGarageCard from "../components/home/garage/SwipeableGarageCard";
+import HomeHeader from "../components/home/HomeHeader";
 import { SCREENS } from "../constants/screens";
 import { GlobalStyles } from "../constants/styles";
-import { addGarage, selectGarages } from "../store/home/garage";
+import { addGarage, removeGarage, selectGarages } from "../store/home/garage";
 import { Garage } from "../types/home/garage/garage";
+import { showToast } from "../util/toast";
+
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -30,49 +32,56 @@ const HomeScreen = () => {
 
   const handleGarageCreated = (newGarage: Garage) => {
     dispatch(addGarage(newGarage));
-    Alert.alert("Garáž vytvorená", `${newGarage.name} bola úspešne pridaná`);
+    showToast("info", `Garáž ${newGarage.name} bola úspešne vytvorená`);
   };
 
-  const handleRequestGarage = () => {
-    Alert.alert("Request Garage", "Táto funkcia bude implementovaná neskôr");
+  const handleRemoveGarage = (garageId: string) => {
+    dispatch(removeGarage(garageId));
+    showToast("info", `Garáž bola úspešne odstránená`);
   };
 
-  const handleNavigateToCars = (garageId: string) => {
+  const handleNavigateToCars = () => {
     navigation.navigate(SCREENS.CAR as never);
   };
-
+  
   const ownedGarages: Garage[] = garages.filter((g: Garage) => !g.isShared);
   const sharedGarages: Garage[] = garages.filter((g: Garage) => g.isShared);
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>My Garages</Text>
-        <LogoutButton />
-      </View>
-
+      <HomeHeader title="Moje Garáže" />
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Your Garages</Text>
-          <TouchableOpacity
-            onPress={() => setIsDialogOpen(true)}
-            style={styles.iconButton}
-          >
-            <FontAwesome6 name="plus" iconStyle="solid" size={20} color="white" />
-          </TouchableOpacity>
+          <Text style={styles.sectionTitle}>Výber garáže</Text>
+          {ownedGarages.length > 0 && (
+            <TouchableOpacity
+              onPress={() => setIsDialogOpen(true)}
+              style={styles.iconButton}
+            >
+              <FontAwesome6
+                name="plus"
+                iconStyle="solid"
+                size={20}
+                color="white"
+              />
+            </TouchableOpacity>
+          )}
         </View>
         {ownedGarages.length === 0 ? (
-          <View style={styles.emptyContainer}>
-            <Text style={styles.emptyText}>
-              No garages yet. Create your first one!
-            </Text>
-          </View>
+          <EmptyContainer
+            iconName="warehouse"
+            title="Žiadne garáže"
+            description="Zatiaľ nemáte vytvorené žiadne garáže. Vytvorte svoju prvú garáž a začnite spravovať svoje autá."
+            buttonLabel="Vytvoriť garáž"
+            onButtonPress={() => setIsDialogOpen(true)}
+          />
         ) : (
           ownedGarages.map((garage) => (
-            <GarageCard
+            <SwipeableGarageCard
               key={garage.id}
               garage={garage}
-              onPress={() => handleNavigateToCars(garage.id)}
+              onPress={handleNavigateToCars}
+              onRemove={handleRemoveGarage}
             />
           ))
         )}
@@ -149,8 +158,6 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: GlobalStyles.radius,
   },
-  emptyContainer: { alignItems: "center", paddingVertical: 40 },
-  emptyText: { color: GlobalStyles.colors.primary100, fontSize: 16 },
   requestButton: {
     borderWidth: 1,
     borderColor: GlobalStyles.colors.primary400,
@@ -164,4 +171,10 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: GlobalStyles.colors.primary50,
   },
+  content: {
+    paddingHorizontal: 16,
+  },
+  text: {
+    fontSize: 16,
+  }
 });

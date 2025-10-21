@@ -21,6 +21,9 @@ export default function App() {
           success: (props: BaseToastProps) => (
             <NotificationToast {...props} type="success" />
           ),
+          info: (props: BaseToastProps) => (
+            <NotificationToast {...props} type="info" />
+          ),
           error: (props: BaseToastProps) => (
             <NotificationToast {...props} type="error" />
           ),

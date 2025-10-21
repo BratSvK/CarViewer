@@ -13,7 +13,7 @@ const HomeStatusBar = () => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    backgroundColor: GlobalStyles.colors.primary800,
+    backgroundColor: GlobalStyles.colors.primaryMuted800,
     paddingLeft: 10,
     alignItems: "flex-start",
   }

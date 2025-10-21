@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import Toast from "react-native-toast-message";
 
-type ToastType = "success" | "error" | "warning";
+type ToastType = "success"| "info" | "error" | "warning";
 
 export const showToast = (
   type: ToastType,
