@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AuthHeader from "../components/auth/AuthHeader";
 import { SCREENS } from "../constants/screens";
-import LoginScreen from "../screens/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen";
+import LoginScreen from "../screens/auth/LoginScreen";
+import RegisterScreen from "../screens/auth/RegisterScreen";
 
 // Defines types for navigation in the Auth stack of the application
 export type AuthStackParamList = {

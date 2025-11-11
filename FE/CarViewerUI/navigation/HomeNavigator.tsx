@@ -1,11 +1,11 @@
 import { FontAwesome6 } from "@react-native-vector-icons/fontawesome6";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import HomeHeader from "../components/home/HomeStatusBar";
+import HomeStatusBar from "../components/home/HomeStatusBar";
 import { SCREENS } from "../constants/screens";
 import { GlobalStyles } from "../constants/styles";
-import CarScreen from "../screens/CarScreen";
-import HomeScreen from "../screens/HomeScreen";
+import CarScreen from "../screens/garage/CarScreen";
+import HomeScreen from "../screens/garage/HomeScreen";
 
 export type HomeTabParamList = {
   Home: undefined;
@@ -20,7 +20,7 @@ export default function HomeNavigator() {
     <>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          header: () => <HomeHeader />,
+          header: () => <HomeStatusBar />,
           tabBarIcon: ({ color, size }) => {
             const iconName =
               route.name === "Home"
@@ -38,15 +38,16 @@ export default function HomeNavigator() {
               />
             );
           },
-          tabBarActiveTintColor: GlobalStyles.colors.primary500,
-          tabBarInactiveTintColor: GlobalStyles.colors.primary100,
+          tabBarActiveTintColor: GlobalStyles.colors.iconActive,
+          tabBarInactiveTintColor: GlobalStyles.colors.iconInactive,
           tabBarShowLabel: false,
           tabBarIconStyle: {
             marginTop: 8,
           },
           tabBarStyle: {
-            backgroundColor: GlobalStyles.colors.primary800,
-            borderTopColor: GlobalStyles.colors.primary400,
+            backgroundColor: GlobalStyles.colors.cardBackground,
+            borderTopWidth: 2,
+            borderTopColor: GlobalStyles.colors.barStroke,
           },
           animation: "none",
         })}

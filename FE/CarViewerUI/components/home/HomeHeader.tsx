@@ -19,9 +19,9 @@ const HomeHeader = ({ title }: HeaderProps) => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: GlobalStyles.colors.primary800,
+    backgroundColor: GlobalStyles.colors.barBackground,
     borderBottomWidth: 1,
-    borderBottomColor: GlobalStyles.colors.primary400,
+    borderBottomColor: GlobalStyles.colors.barStroke,
     paddingVertical: 16,
     paddingHorizontal: 20,
     flexDirection: "row",
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 22,
-    fontWeight: "700",
-    color: GlobalStyles.colors.primary50,
+    fontWeight: "800",
+    color: GlobalStyles.colors.textPrimary,
   },
 });
 

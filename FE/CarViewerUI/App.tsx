@@ -1,6 +1,5 @@
 import "./services/i18n";
 
-import { StatusBar } from "expo-status-bar";
 import Toast, { BaseToastProps } from "react-native-toast-message";
 import { Provider } from "react-redux";
 import { NotificationToast } from "./components/NotificationToast";
@@ -10,7 +9,6 @@ import { store } from './store';
 export default function App() {
   return (
     <>
-      <StatusBar style="light" />
       <Provider store={store}>
         <AppNavigator />
       </Provider>
