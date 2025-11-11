@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { GlobalStyles } from "../../../constants/styles";
 import { Garage } from "../../../types/home/garage/garage";
 
 const GarageCard = ({
@@ -34,16 +35,12 @@ export default GarageCard;
 const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
-    backgroundColor: "#f9f9f9",
-    borderRadius: 10,
+    backgroundColor: GlobalStyles.colors.cardBackground,
+    borderColor: GlobalStyles.colors.cardStroke,
+    borderWidth: 1,
+    borderRadius: GlobalStyles.radius,
     padding: 12,
-    marginBottom: 10,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    elevation: 2,
   },
   imageWrapper: {
     width: 64,
@@ -61,7 +58,11 @@ const styles = StyleSheet.create({
   },
   placeholderText: { fontSize: 24, fontWeight: "bold", color: "#555" },
   info: { flex: 1 },
-  name: { fontSize: 16, fontWeight: "600" },
-  details: { color: "#666", fontSize: 14 },
+  name: {
+    fontSize: 17,
+    color: GlobalStyles.colors.textPrimary,
+    fontWeight: "800",
+  },
+  details: { color: GlobalStyles.colors.textSecondary, fontSize: 14 },
   shared: { color: "#007bff", fontSize: 13, fontWeight: "500", marginTop: 4 },
 });
