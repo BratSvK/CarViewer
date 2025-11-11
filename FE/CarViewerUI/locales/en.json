@@ -25,6 +25,9 @@
   "logout_inner_alert": "You will need to login again to access your account.",
   "logout_confirm": "Logout",
   "logout_cancel": "Cancel",
+  "login_successful": "Login successful!",
   "home_tab": "Home",
-  "car_tab": "Car"
+  "car_tab": "Car",
+  "garage_created_success": "Garage {{name}} has been successfully created",
+  "garage_removed_success": "Garage has been successfully removed"
 }

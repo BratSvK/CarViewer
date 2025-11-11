@@ -20,7 +20,7 @@ interface SwipeableGarageCardProps {
 }
 
 const SWIPE_THRESHOLD = -80;
-const ACTION_WIDTH = 80;
+const ACTION_WIDTH = 90;
 
 const SwipeableGarageCard: React.FC<SwipeableGarageCardProps> = ({
   garage,

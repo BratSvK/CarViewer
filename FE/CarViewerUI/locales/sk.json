@@ -26,6 +26,9 @@
   "logout_inner_alert": "Naozaj sa chcete odhlásiť?",
   "logout_confirm": "Odhlásiť sa",
   "logout_cancel": "Zrušiť",
+  "login_successful": "Úspešné prihlásenie!",
   "home_tab": "Domov",
-  "car_tab": "Auto"
+  "car_tab": "Auto",
+  "garage_created_success": "Garáž {{name}} bola úspešne vytvorená",
+  "garage_removed_success": "Garáž bola úspešne odstránená"
 }

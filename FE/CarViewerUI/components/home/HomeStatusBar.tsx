@@ -4,7 +4,7 @@ import { GlobalStyles } from "../../constants/styles";
 
 const HomeStatusBar = () => {
   return <View style={styles.container}>
-    <StatusBar />
+    <StatusBar barStyle="light-content"  />
   </View>;
 };
 

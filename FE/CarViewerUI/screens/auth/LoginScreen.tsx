@@ -33,7 +33,6 @@ const LoginScreen = () => {
   });
 
   const handleForgotPassword = (email: string) => {
-    console.log("Forgot password for:", email);
     authService.forgotPassword(email);
     setModalVisible(false); // Close the modal after handling
   };
@@ -54,7 +53,7 @@ const LoginScreen = () => {
     const user = await authService.login(data.email, data.password);
     dispatch(login(user));
 
-    showToast("success", "Login successful!");
+    showToast("success", LOCALIZATION.loginScreen.loginSuccess);
   };
 
   var imageLogo = require("../../assets/logo_welcome.png");

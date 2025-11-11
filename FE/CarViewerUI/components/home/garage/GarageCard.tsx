@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { Pressable } from "react-native-gesture-handler";
 import { GlobalStyles } from "../../../constants/styles";
 import { Garage } from "../../../types/home/garage/garage";
 
@@ -11,7 +12,13 @@ const GarageCard = ({
   onPress?: () => void;
 }) => {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.card,
+        { opacity: pressed ? 0.6 : 1 },
+      ]}
+      onPress={onPress}
+    >
       <View style={styles.imageWrapper}>
         {garage.imageUrl ? (
           <Image source={{ uri: garage.imageUrl }} style={styles.image} />
@@ -26,7 +33,7 @@ const GarageCard = ({
         <Text style={styles.details}>{garage.carCount} cars</Text>
         {garage.isShared && <Text style={styles.shared}>Shared</Text>}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

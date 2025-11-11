@@ -13,6 +13,7 @@ import { EmptyContainer } from "../../components/EmptyContainer";
 import CreateGarageDialog from "../../components/home/garage/CrateGarageModal";
 import SwipeableGarageCard from "../../components/home/garage/SwipeableGarageCard";
 import HomeHeader from "../../components/home/HomeHeader";
+import LOCALIZATION from "../../constants/localization";
 import { SCREENS } from "../../constants/screens";
 import { GlobalStyles } from "../../constants/styles";
 import { addGarage, removeGarage, selectGarages } from "../../store/home/garage";
@@ -32,12 +33,12 @@ const HomeScreen = () => {
 
   const handleGarageCreated = (newGarage: Garage) => {
     dispatch(addGarage(newGarage));
-    showToast("info", `Garáž ${newGarage.name} bola úspešne vytvorená`);
+    showToast("success", LOCALIZATION.homeScreen.garageCreatedSuccess, { name: newGarage.name });
   };
 
   const handleRemoveGarage = (garageId: string) => {
     dispatch(removeGarage(garageId));
-    showToast("info", `Garáž bola úspešne odstránená`);
+    showToast("info", LOCALIZATION.homeScreen.garageRemovedSuccess);
   };
 
   const handleNavigateToCars = () => {

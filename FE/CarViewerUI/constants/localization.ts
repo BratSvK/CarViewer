@@ -4,7 +4,6 @@ const LOCALIZATION = {
     ok: 'OK',
     yes: 'Yes',
     no: 'No',
-    // Add other common terms here
   },
   forms: {
     email: 'email_placeholder',
@@ -24,6 +23,7 @@ const LOCALIZATION = {
     loginButton: 'login_button',
     signUpPrompt: 'sign_up_prompt',
     forgotPasswordPrompt: 'forgot_password_prompt',
+    loginSuccess: 'login_successful',
   },
   registerScreen: {
     createAccount: 'register',
@@ -43,6 +43,8 @@ const LOCALIZATION = {
     logoutCancel: 'logout_cancel',
     homeTab: 'home_tab',
     carTab: 'car_tab',
+    garageCreatedSuccess: 'garage_created_success',
+    garageRemovedSuccess: 'garage_removed_success',
   }
 };
 
