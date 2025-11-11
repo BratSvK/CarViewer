@@ -9,15 +9,15 @@ import {
   View
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { EmptyContainer } from "../components/EmptyContainer";
-import CreateGarageDialog from "../components/home/garage/CrateGarageModal";
-import SwipeableGarageCard from "../components/home/garage/SwipeableGarageCard";
-import HomeHeader from "../components/home/HomeHeader";
-import { SCREENS } from "../constants/screens";
-import { GlobalStyles } from "../constants/styles";
-import { addGarage, removeGarage, selectGarages } from "../store/home/garage";
-import { Garage } from "../types/home/garage/garage";
-import { showToast } from "../util/toast";
+import { EmptyContainer } from "../../components/EmptyContainer";
+import CreateGarageDialog from "../../components/home/garage/CrateGarageModal";
+import SwipeableGarageCard from "../../components/home/garage/SwipeableGarageCard";
+import HomeHeader from "../../components/home/HomeHeader";
+import { SCREENS } from "../../constants/screens";
+import { GlobalStyles } from "../../constants/styles";
+import { addGarage, removeGarage, selectGarages } from "../../store/home/garage";
+import { Garage } from "../../types/home/garage/garage";
+import { showToast } from "../../util/toast";
 
 
 const HomeScreen = () => {
@@ -45,7 +45,6 @@ const HomeScreen = () => {
   };
   
   const ownedGarages: Garage[] = garages.filter((g: Garage) => !g.isShared);
-  const sharedGarages: Garage[] = garages.filter((g: Garage) => g.isShared);
 
   return (
     <View style={styles.container}>
@@ -85,26 +84,6 @@ const HomeScreen = () => {
             />
           ))
         )}
-
-        {/* {sharedGarages.length > 0 && (
-          <>
-            <Text style={styles.sectionTitle}>Shared Garages</Text>
-            {sharedGarages.map((garage) => (
-              <GarageCard
-                key={garage.id}
-                garage={garage}
-                onPress={() => handleNavigateToCars(garage.id)}
-              />
-            ))}
-          </>
-        )} */}
-
-        {/* <TouchableOpacity
-          style={styles.requestButton}
-          onPress={handleRequestGarage}
-        >
-          <Text style={styles.requestButtonText}>Request Other Garage</Text>
-        </TouchableOpacity> */}
       </ScrollView>
 
       <CreateGarageDialog
@@ -122,8 +101,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: GlobalStyles.colors.primary800,
-    paddingTop: 50,
-    paddingBottom: 80,
   },
   header: {
     backgroundColor: GlobalStyles.colors.primary800,
@@ -137,7 +114,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 22,
-    fontWeight: "700",
+    fontWeight: "800",
     color: GlobalStyles.colors.primary50,
   },
   scrollContent: { padding: 16 },
@@ -154,7 +131,7 @@ const styles = StyleSheet.create({
     color: GlobalStyles.colors.primary50,
   },
   iconButton: {
-    backgroundColor: GlobalStyles.colors.primary500,
+    backgroundColor: GlobalStyles.colors.iconActive,
     padding: 12,
     borderRadius: GlobalStyles.radius,
   },

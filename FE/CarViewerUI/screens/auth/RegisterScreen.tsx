@@ -5,16 +5,16 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import * as Yup from "yup";
-import AbstractText from "../components/AbstractText";
-import ValidatedInput from "../components/ValidationInput";
-import LOCALIZATION from "../constants/localization";
-import { SCREENS } from "../constants/screens";
-import { AuthStackParamList } from "../navigation/AuthNavigator";
-import authService from "../services/authService";
-import { register } from "../store/auth";
-import { useAppDispatch } from "../store/hooks";
-import { RegisterUserCommand } from "../types/auth/registerUserRequest";
-import { showToast } from "../util/toast";
+import AbstractText from "../../components/AbstractText";
+import ValidatedInput from "../../components/ValidationInput";
+import LOCALIZATION from "../../constants/localization";
+import { SCREENS } from "../../constants/screens";
+import { AuthStackParamList } from "../../navigation/AuthNavigator";
+import authService from "../../services/authService";
+import { register } from "../../store/auth";
+import { useAppDispatch } from "../../store/hooks";
+import { RegisterUserCommand } from "../../types/auth/registerUserRequest";
+import { showToast } from "../../util/toast";
 
 const RegisterScreen = () => {
   const navigation =

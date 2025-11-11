@@ -5,16 +5,16 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import * as Yup from "yup";
-import AbstractText from "../components/AbstractText";
-import ForgotPasswordModal from "../components/ForgotPasswordModal";
-import ValidatedInput from "../components/ValidationInput";
-import LOCALIZATION from "../constants/localization";
-import { SCREENS } from "../constants/screens";
-import { AuthStackParamList } from "../navigation/AuthNavigator";
-import authService from "../services/authService";
-import { login } from "../store/auth";
-import { useAppDispatch } from "../store/hooks";
-import { showToast } from "../util/toast";
+import AbstractText from "../../components/AbstractText";
+import ForgotPasswordModal from "../../components/ForgotPasswordModal";
+import ValidatedInput from "../../components/ValidationInput";
+import LOCALIZATION from "../../constants/localization";
+import { SCREENS } from "../../constants/screens";
+import { AuthStackParamList } from "../../navigation/AuthNavigator";
+import authService from "../../services/authService";
+import { login } from "../../store/auth";
+import { useAppDispatch } from "../../store/hooks";
+import { showToast } from "../../util/toast";
 
 const LoginScreen = () => {
   const navigation =
@@ -57,7 +57,7 @@ const LoginScreen = () => {
     showToast("success", "Login successful!");
   };
 
-  var imageLogo = require("../assets/logo_welcome.png");
+  var imageLogo = require("../../assets/logo_welcome.png");
 
   return (
     <View style={styles.container}>
