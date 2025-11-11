@@ -6,7 +6,7 @@ import { Text, TextStyle } from 'react-native';
 type AbstractTextProps = {
   textKey: string;
   className?: string;
-  style?: TextStyle;
+  style?: TextStyle | TextStyle[];
 };
 
 const AbstractText: React.FC<AbstractTextProps> = ({ textKey: word, style }) => {

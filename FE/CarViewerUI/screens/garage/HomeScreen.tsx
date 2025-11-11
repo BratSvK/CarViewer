@@ -48,12 +48,12 @@ const HomeScreen = () => {
   };
   
   const ownedGarages: Garage[] = garages.filter((g: Garage) => !g.isShared);
+  const hasGarages: boolean = ownedGarages.length > 0;
 
   return (
     <View style={styles.container}>
       <HomeHeader title={LOCALIZATION.homeScreen.homeTitle} />
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        {ownedGarages.length > 0 && (
+      {hasGarages && (
           <View style={styles.sectionHeader}>
             <AbstractText
               textKey={LOCALIZATION.homeScreen.garageCreateLabel}
@@ -72,7 +72,8 @@ const HomeScreen = () => {
             </TouchableOpacity>
           </View>
         )}
-        {ownedGarages.length === 0 ? (
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        {!hasGarages ? (
           <EmptyContainer
             iconName="warehouse"
             title={t(LOCALIZATION.homeScreen.garageEmptyList)}
@@ -123,12 +124,12 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: GlobalStyles.colors.primary50,
   },
-  scrollContent: { padding: 16 },
+  scrollContent: { padding: 10 },
   sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 12,
+    padding: 16,
   },
   sectionTitle: {
     fontSize: 18,

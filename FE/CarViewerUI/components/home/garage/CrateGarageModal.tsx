@@ -1,19 +1,17 @@
 import { FontAwesome6 } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 import {
   KeyboardAvoidingView,
   Modal,
   Platform,
   Pressable,
   StyleSheet,
-  Text,
-  TextInput,
-  View,
+  View
 } from "react-native";
 import LOCALIZATION from "../../../constants/localization";
 import { GlobalStyles } from "../../../constants/styles";
 import { Garage } from "../../../types/home/garage/garage";
+import AbstractInputText from "../../AbstractInputText";
 import AbstractText from "../../AbstractText";
 
 interface CreateGarageDialogProps {
@@ -27,8 +25,8 @@ const CreateGarageDialog: React.FC<CreateGarageDialogProps> = ({
   onClose,
   onGarageCreated,
 }) => {
-  const { t } = useTranslation();
   const [name, setName] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleCreate = () => {
     if (!name.trim()) return;
@@ -63,7 +61,6 @@ const CreateGarageDialog: React.FC<CreateGarageDialogProps> = ({
       >
         <Pressable style={styles.backdrop} onPress={handleClose} />
         <View style={styles.modalView}>
-         
           <Pressable onPress={handleClose} style={styles.closeButton}>
             <FontAwesome6
               name="xmark"
@@ -88,13 +85,14 @@ const CreateGarageDialog: React.FC<CreateGarageDialogProps> = ({
               textKey={LOCALIZATION.createGarageModal.inputLabel}
               style={styles.inputLabel}
             />
-            <TextInput
-              style={styles.input}
-              placeholder={t(LOCALIZATION.createGarageModal.placeholder)}
+            <AbstractInputText
+              placeholderKey={LOCALIZATION.createGarageModal.placeholder}
+              style={[styles.input, isFocused && styles.inputFocused]}
               placeholderTextColor={GlobalStyles.colors.textSecondary}
               value={name}
               onChangeText={setName}
               autoFocus
+              onFocus={() => setIsFocused(true)}
             />
           </View>
 
@@ -107,9 +105,10 @@ const CreateGarageDialog: React.FC<CreateGarageDialogProps> = ({
                 { opacity: pressed ? 0.8 : 1 },
               ]}
             >
-              <Text style={styles.buttonText}>
-                {t(LOCALIZATION.createGarageModal.cancelButton)}
-              </Text>
+              <AbstractText
+                textKey={LOCALIZATION.createGarageModal.cancelButton}
+                style={styles.buttonText}
+              />
             </Pressable>
             <Pressable
               onPress={handleCreate}
@@ -119,9 +118,10 @@ const CreateGarageDialog: React.FC<CreateGarageDialogProps> = ({
                 { opacity: pressed ? 0.8 : 1 },
               ]}
             >
-              <Text style={[styles.buttonText, styles.createText]}>
-                {t(LOCALIZATION.createGarageModal.createButton)}
-              </Text>
+              <AbstractText
+                textKey={LOCALIZATION.createGarageModal.createButton}
+                style={[styles.buttonText, styles.createText]}
+              />
             </Pressable>
           </View>
         </View>
@@ -148,6 +148,13 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.cardBackground,
     borderRadius: 16,
     padding: 24,
+  },
+  inputFocused: {
+    borderColor: GlobalStyles.colors.iconActive,
+    shadowColor: GlobalStyles.colors.iconActive, 
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 5,
   },
   header: {
     justifyContent: "space-between",

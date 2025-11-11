@@ -41,5 +41,6 @@
   "create_garage_modal_placeholder": "napr. Hlavná garáž",
   "create_garage_modal_cancel": "Zrušiť",
   "create_garage_modal_create": "Vytvoriť",
-  "create_garage_modal_input_label": "Názov garáže"
+  "create_garage_modal_input_label": "Názov garáže",
+  "cars_title": "Moje autá"
 }

@@ -4,7 +4,7 @@ import React from "react";
 import HomeStatusBar from "../components/home/HomeStatusBar";
 import { SCREENS } from "../constants/screens";
 import { GlobalStyles } from "../constants/styles";
-import CarScreen from "../screens/garage/CarScreen";
+import CarsScreen from "../screens/garage/CarsScreen";
 import HomeScreen from "../screens/garage/HomeScreen";
 
 export type HomeTabParamList = {
@@ -53,7 +53,7 @@ export default function HomeNavigator() {
         })}
       >
         <Tab.Screen name={SCREENS.HOME as never} component={HomeScreen} />
-        <Tab.Screen name={SCREENS.CAR as never} component={CarScreen} />
+        <Tab.Screen name={SCREENS.CAR as never} component={CarsScreen} />
       </Tab.Navigator>
     </>
   );

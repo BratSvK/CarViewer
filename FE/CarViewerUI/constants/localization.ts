@@ -51,6 +51,9 @@ const LOCALIZATION = {
     garageEmptyListDesc: 'garage_empty_list_description',
     garageEmptyListBtnLabel: 'garage_empty_list_button_label',
   },
+  carsScreen: {
+    carsTitle: 'cars_title',
+  },
   createGarageModal: {
     title: 'create_garage_modal_title',
     subtitle: 'create_garage_modal_subtitle',
