@@ -16,6 +16,8 @@ import { login } from "../../store/auth";
 import { useAppDispatch } from "../../store/hooks";
 import { showToast } from "../../util/toast";
 
+const LOGO_PATH: string = "../../assets/logo_welcome.png";
+
 const LoginScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
@@ -56,7 +58,7 @@ const LoginScreen = () => {
     showToast("success", LOCALIZATION.loginScreen.loginSuccess);
   };
 
-  var imageLogo = require("../../assets/logo_welcome.png");
+  var imageLogo = require(LOGO_PATH);
 
   return (
     <View style={styles.container}>

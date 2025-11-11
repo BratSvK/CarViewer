@@ -1,14 +1,15 @@
 import FontAwesome6 from "@react-native-vector-icons/fontawesome6";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import AbstractText from "../../components/AbstractText";
 import { EmptyContainer } from "../../components/EmptyContainer";
 import CreateGarageDialog from "../../components/home/garage/CrateGarageModal";
 import SwipeableGarageCard from "../../components/home/garage/SwipeableGarageCard";
@@ -26,6 +27,7 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
   const garages = useSelector(selectGarages);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { t } = useTranslation();
 
   // useEffect(() => {
   //   dispatch(loadGaragesAsync());
@@ -49,11 +51,14 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <HomeHeader title="Moje Garáže" />
+      <HomeHeader title={LOCALIZATION.homeScreen.homeTitle} />
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Výber garáže</Text>
-          {ownedGarages.length > 0 && (
+        {ownedGarages.length > 0 && (
+          <View style={styles.sectionHeader}>
+            <AbstractText
+              textKey={LOCALIZATION.homeScreen.garageCreateLabel}
+              style={styles.sectionTitle}
+            />
             <TouchableOpacity
               onPress={() => setIsDialogOpen(true)}
               style={styles.iconButton}
@@ -65,14 +70,14 @@ const HomeScreen = () => {
                 color="white"
               />
             </TouchableOpacity>
-          )}
-        </View>
+          </View>
+        )}
         {ownedGarages.length === 0 ? (
           <EmptyContainer
             iconName="warehouse"
-            title="Žiadne garáže"
-            description="Zatiaľ nemáte vytvorené žiadne garáže. Vytvorte svoju prvú garáž a začnite spravovať svoje autá."
-            buttonLabel="Vytvoriť garáž"
+            title={t(LOCALIZATION.homeScreen.garageEmptyList)}
+            description={t(LOCALIZATION.homeScreen.garageEmptyListDesc)}
+            buttonLabel={t(LOCALIZATION.homeScreen.garageEmptyListBtnLabel)}
             onButtonPress={() => setIsDialogOpen(true)}
           />
         ) : (

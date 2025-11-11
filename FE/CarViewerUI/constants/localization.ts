@@ -45,6 +45,11 @@ const LOCALIZATION = {
     carTab: 'car_tab',
     garageCreatedSuccess: 'garage_created_success',
     garageRemovedSuccess: 'garage_removed_success',
+    homeTitle: 'home_title',
+    garageCreateLabel: 'garage_create_label',
+    garageEmptyList: 'garage_empty_list',
+    garageEmptyListDesc: 'garage_empty_list_description',
+    garageEmptyListBtnLabel: 'garage_empty_list_button_label',
   }
 };
 

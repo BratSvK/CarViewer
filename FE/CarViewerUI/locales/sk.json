@@ -30,5 +30,10 @@
   "home_tab": "Domov",
   "car_tab": "Auto",
   "garage_created_success": "Garáž {{name}} bola úspešne vytvorená",
-  "garage_removed_success": "Garáž bola úspešne odstránená"
+  "garage_removed_success": "Garáž bola úspešne odstránená",
+  "home_title": "Moje garáže",
+  "garage_create_label": "Vytvoriť novú garáž",
+  "garage_empty_list": "Žiadne garáže",
+  "garage_empty_list_description": "Ešte nemáte vytvorené žiadne garáže. Vytvorte svoju prvú garáž a začnite spravovať svoje autá.",
+  "garage_empty_list_button_label": "Vytvoriť garáž"
 }

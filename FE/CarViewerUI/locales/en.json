@@ -29,5 +29,10 @@
   "home_tab": "Home",
   "car_tab": "Car",
   "garage_created_success": "Garage {{name}} has been successfully created",
-  "garage_removed_success": "Garage has been successfully removed"
+  "garage_removed_success": "Garage has been successfully removed",
+  "home_title": "Your Garages",
+  "garage_create_label": "Create New Garage",
+  "garage_empty_list": "No garages",
+  "garage_empty_list_description": "You don't have any garages created yet. Create your first garage to start managing your cars.",
+  "garage_empty_list_button_label": "Create Garage"
 }
