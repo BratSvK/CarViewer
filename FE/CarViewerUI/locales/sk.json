@@ -35,5 +35,11 @@
   "garage_create_label": "Vytvoriť novú garáž",
   "garage_empty_list": "Žiadne garáže",
   "garage_empty_list_description": "Ešte nemáte vytvorené žiadne garáže. Vytvorte svoju prvú garáž a začnite spravovať svoje autá.",
-  "garage_empty_list_button_label": "Vytvoriť garáž"
+  "garage_empty_list_button_label": "Vytvoriť garáž",
+  "create_garage_modal_title": "Vytvoriť novú garáž",
+  "create_garage_modal_subtitle": "Pridajte názov vašej novej garáže",
+  "create_garage_modal_placeholder": "napr. Hlavná garáž",
+  "create_garage_modal_cancel": "Zrušiť",
+  "create_garage_modal_create": "Vytvoriť",
+  "create_garage_modal_input_label": "Názov garáže"
 }

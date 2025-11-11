@@ -50,6 +50,14 @@ const LOCALIZATION = {
     garageEmptyList: 'garage_empty_list',
     garageEmptyListDesc: 'garage_empty_list_description',
     garageEmptyListBtnLabel: 'garage_empty_list_button_label',
+  },
+  createGarageModal: {
+    title: 'create_garage_modal_title',
+    subtitle: 'create_garage_modal_subtitle',
+    inputLabel: 'create_garage_modal_input_label',
+    placeholder: 'create_garage_modal_placeholder',
+    cancelButton: 'create_garage_modal_cancel',
+    createButton: 'create_garage_modal_create',
   }
 };
 

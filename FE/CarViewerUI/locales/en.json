@@ -34,5 +34,11 @@
   "garage_create_label": "Create New Garage",
   "garage_empty_list": "No garages",
   "garage_empty_list_description": "You don't have any garages created yet. Create your first garage to start managing your cars.",
-  "garage_empty_list_button_label": "Create Garage"
+  "garage_empty_list_button_label": "Create Garage",
+  "create_garage_modal_title": "Create New Garage",
+  "create_garage_modal_placeholder": "etc. Parker Garage",
+  "create_garage_modal_cancel": "Cancel",
+  "create_garage_modal_create": "Create",
+  "create_garage_modal_subtitle": "Add a name for your new garage",
+  "create_garage_modal_input_label": "Garage Name"
 }

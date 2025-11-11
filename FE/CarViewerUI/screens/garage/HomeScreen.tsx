@@ -26,7 +26,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const garages = useSelector(selectGarages);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(true);
   const { t } = useTranslation();
 
   // useEffect(() => {
