@@ -50,6 +50,7 @@ const LOCALIZATION = {
     garageEmptyList: 'garage_empty_list',
     garageEmptyListDesc: 'garage_empty_list_description',
     garageEmptyListBtnLabel: 'garage_empty_list_button_label',
+    cardTotalCars: 'car_total_count',
   },
   carsScreen: {
     carsTitle: 'cars_title',

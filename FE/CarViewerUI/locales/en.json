@@ -41,5 +41,6 @@
   "create_garage_modal_create": "Create",
   "create_garage_modal_subtitle": "Add a name for your new garage",
   "create_garage_modal_input_label": "Garage Name",
-  "cars_title": "Your Cars"
+  "cars_title": "Your Cars",
+  "car_total_count": "Owned Cars: {{count}}"
 }

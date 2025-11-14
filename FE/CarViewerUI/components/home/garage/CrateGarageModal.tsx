@@ -6,7 +6,7 @@ import {
   Platform,
   Pressable,
   StyleSheet,
-  View
+  View,
 } from "react-native";
 import LOCALIZATION from "../../../constants/localization";
 import { GlobalStyles } from "../../../constants/styles";
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   inputFocused: {
     borderColor: GlobalStyles.colors.iconActive,
-    shadowColor: GlobalStyles.colors.iconActive, 
+    shadowColor: GlobalStyles.colors.iconActive,
     shadowOpacity: 0.5,
     shadowRadius: 4,
     elevation: 5,

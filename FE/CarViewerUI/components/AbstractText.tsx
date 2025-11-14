@@ -7,13 +7,14 @@ type AbstractTextProps = {
   textKey: string;
   className?: string;
   style?: TextStyle | TextStyle[];
+  options?: Record<string, any>
 };
 
-const AbstractText: React.FC<AbstractTextProps> = ({ textKey: word, style }) => {
+const AbstractText: React.FC<AbstractTextProps> = ({ textKey: word, style, options }) => {
   const { t } = useTranslation();
 
   return (
-    <Text style={style}>{t(word)}</Text>
+    <Text style={style}>{t(word, options)}</Text>
   );
 };
 

@@ -1,8 +1,10 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Pressable } from "react-native-gesture-handler";
+import LOCALIZATION from "../../../constants/localization";
 import { GlobalStyles } from "../../../constants/styles";
 import { Garage } from "../../../types/home/garage/garage";
+import AbstractText from "../../AbstractText";
 
 const GarageCard = ({
   garage,
@@ -13,10 +15,7 @@ const GarageCard = ({
 }) => {
   return (
     <Pressable
-      style={({ pressed }) => [
-        styles.card,
-        { opacity: pressed ? 0.6 : 1 },
-      ]}
+      style={({ pressed }) => [styles.card, { opacity: pressed ? 0.6 : 1 }]}
       onPress={onPress}
     >
       <View style={styles.imageWrapper}>
@@ -30,8 +29,12 @@ const GarageCard = ({
       </View>
       <View style={styles.info}>
         <Text style={styles.name}>{garage.name}</Text>
-        <Text style={styles.details}>{garage.carCount} cars</Text>
-        {garage.isShared && <Text style={styles.shared}>Shared</Text>}
+        <AbstractText
+          textKey={LOCALIZATION.homeScreen.cardTotalCars}
+          options={{ count: garage.carCount }}
+          style={styles.details}
+        />
+        {/* {garage.isShared && <Text style={styles.shared}>Shared</Text>} */}
       </View>
     </Pressable>
   );
