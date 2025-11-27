@@ -1,5 +1,3 @@
-using System.Security.Claims;
-using CarViewer.Application.DTO.Auth;
 using CarViewer.Application.Interfaces.Repositories;
 using CarViewer.Application.Interfaces.Services;
 using CarViewer.Domain.Entities.Auth;
@@ -77,6 +75,26 @@ public static class InfrastructureServices
         FirebaseApp.Create(new AppOptions
         {
             Credential = GoogleCredential.FromFile(config["Credentials:Firebase:Path"])
+        });
+
+        return services;
+    }
+    
+    public static IServiceCollection AddSupebaseStorageService(
+        this IServiceCollection services,
+        IConfiguration config)
+    {
+        services.AddScoped<Supabase.Client>(_ =>
+        {
+            string supabaseUrl = config["Supabase:Url"]!;
+            string supabaseKey = config["Supabase:Key"]!;
+            var supabseOptions = new Supabase.SupabaseOptions
+            {
+                AutoRefreshToken = true,
+                AutoConnectRealtime = true,
+            };
+            
+            return new Supabase.Client(supabaseUrl, supabaseKey, supabseOptions);
         });
 
         return services;

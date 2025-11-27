@@ -138,6 +138,163 @@ namespace CarViewer.Infrastructure.Persistence.Migrations
                     b.ToTable("UserRole", (string)null);
                 });
 
+            modelBuilder.Entity("CarViewer.Domain.Entities.Garages.Garage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<int>("Capacity")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<DateTimeOffset>("Created")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetimeoffset")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("OwnerId", "Name")
+                        .IsUnique();
+
+                    b.ToTable("Garage", (string)null);
+                });
+
+            modelBuilder.Entity("CarViewer.Domain.Entities.Garages.GarageInventory", b =>
+                {
+                    b.Property<Guid>("VehicleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("GarageId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("AddedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetimeoffset")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.HasKey("VehicleId", "GarageId");
+
+                    b.HasIndex("GarageId");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("GarageInventory", (string)null);
+                });
+
+            modelBuilder.Entity("CarViewer.Domain.Entities.Garages.Vehicles.VehicleBase", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("EngineType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("EngineVolume")
+                        .HasPrecision(3, 1)
+                        .HasColumnType("float(3)");
+
+                    b.Property<double>("FuelConsumption")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("float(5)");
+
+                    b.Property<string>("GasType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("VIN")
+                        .IsRequired()
+                        .HasMaxLength(17)
+                        .HasColumnType("nvarchar(17)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VIN")
+                        .IsUnique();
+
+                    b.ToTable("Vehicles", (string)null);
+
+                    b.HasDiscriminator().HasValue("VehicleBase");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("CarViewer.Domain.Entities.Garages.Vehicles.VehiclePhoto", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<DateTimeOffset>("AddOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetimeoffset")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<Guid>("VehicleBaseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VehicleBaseId");
+
+                    b.ToTable("VehiclePhoto", (string)null);
+                });
+
+            modelBuilder.Entity("CarViewer.Domain.Entities.Garages.Vehicles.VehicleTypes.Car", b =>
+                {
+                    b.HasBaseType("CarViewer.Domain.Entities.Garages.Vehicles.VehicleBase");
+
+                    b.Property<string>("CarType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasIndex("CarType");
+
+                    b.HasDiscriminator().HasValue("Car");
+                });
+
             modelBuilder.Entity("CarViewer.Domain.Entities.Auth.UserClaim", b =>
                 {
                     b.HasOne("CarViewer.Domain.Entities.Auth.User", "User")
@@ -164,9 +321,64 @@ namespace CarViewer.Infrastructure.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("CarViewer.Domain.Entities.Garages.Garage", b =>
+                {
+                    b.HasOne("CarViewer.Domain.Entities.Auth.User", "Owner")
+                        .WithMany("Garages")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("CarViewer.Domain.Entities.Garages.GarageInventory", b =>
+                {
+                    b.HasOne("CarViewer.Domain.Entities.Garages.Garage", "Garage")
+                        .WithMany("GarageInventories")
+                        .HasForeignKey("GarageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarViewer.Domain.Entities.Garages.Vehicles.VehicleBase", "VehicleBase")
+                        .WithMany("GarageInventories")
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Garage");
+
+                    b.Navigation("VehicleBase");
+                });
+
+            modelBuilder.Entity("CarViewer.Domain.Entities.Garages.Vehicles.VehiclePhoto", b =>
+                {
+                    b.HasOne("CarViewer.Domain.Entities.Garages.Vehicles.VehicleBase", "VehicleBase")
+                        .WithMany("VehiclePhotos")
+                        .HasForeignKey("VehicleBaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("VehicleBase");
+                });
+
             modelBuilder.Entity("CarViewer.Domain.Entities.Auth.User", b =>
                 {
                     b.Navigation("Claims");
+
+                    b.Navigation("Garages");
+                });
+
+            modelBuilder.Entity("CarViewer.Domain.Entities.Garages.Garage", b =>
+                {
+                    b.Navigation("GarageInventories");
+                });
+
+            modelBuilder.Entity("CarViewer.Domain.Entities.Garages.Vehicles.VehicleBase", b =>
+                {
+                    b.Navigation("GarageInventories");
+
+                    b.Navigation("VehiclePhotos");
                 });
 #pragma warning restore 612, 618
         }

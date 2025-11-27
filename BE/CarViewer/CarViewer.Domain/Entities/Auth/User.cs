@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CarViewer.Domain.Entities.Garages;
+using Microsoft.AspNetCore.Identity;
 
 namespace CarViewer.Domain.Entities.Auth;
 
@@ -19,6 +20,8 @@ public class User : IdentityUser<Guid>, IEntity
     public ICollection<Role> Roles { get; } = [];
     
     public ICollection<UserClaim> Claims { get; } = [];
+
+    public ICollection<Garage> Garages { get; set; } = [];
 
     #endregion
 }
